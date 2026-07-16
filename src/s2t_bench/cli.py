@@ -86,6 +86,19 @@ def _cmd_stream(args: argparse.Namespace) -> int:
         compute_type=args.compute_type,
         initial_prompt=build_initial_prompt(glossary),
     )
+    if args.realtime:
+        if args.source != "mic":
+            print("--realtime currently supports --source mic only")
+            return 2
+        from .realtime import render_live, stream_microphone_realtime
+
+        print("Listening (real-time)... (Ctrl+C to stop)\n")
+        try:
+            render_live(stream_microphone_realtime(engine, interval_s=args.interval))
+        except KeyboardInterrupt:
+            print("\nStopped.")
+        return 0
+
     if args.source == "mic":
         source = stream_microphone(
             engine,
@@ -174,6 +187,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--correct",
         action="store_true",
         help="Run each finalized utterance through Gemini domain correction",
+    )
+    s.add_argument(
+        "--realtime", action="store_true",
+        help="Live word-by-word view (~2-3s latency) instead of per-utterance",
+    )
+    s.add_argument(
+        "--interval", type=float, default=1.0,
+        help="Realtime re-decode interval in seconds (lower = snappier, more CPU)",
     )
     s.add_argument("--extra-terms", default="", help="Comma-separated extra vocab")
     s.set_defaults(func=_cmd_stream)

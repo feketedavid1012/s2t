@@ -82,3 +82,31 @@ class FasterWhisperEngine(TranscriptionEngine):
         """
         text, info = self._run(audio, vad_filter=False)
         return text, getattr(info, "language", None)
+
+    def transcribe_words(self, audio: "Any") -> list[tuple[str, float, float]]:
+        """Transcribe an in-memory array, returning (word, start, end) tuples.
+
+        Used by the real-time streaming transcriber, which needs word timings to
+        commit stable prefixes and to trim its rolling buffer.
+
+        `condition_on_previous_text` is disabled: on a repeatedly re-decoded
+        buffer it encourages the model to invent continuations, which is exactly
+        the instability the agreement policy is trying to filter out.
+        """
+        model = self._get_model()
+        segments, _ = model.transcribe(
+            audio,
+            beam_size=self.beam_size,
+            language=self.language,
+            initial_prompt=self.initial_prompt,
+            vad_filter=False,
+            word_timestamps=True,
+            condition_on_previous_text=False,
+        )
+        words: list[tuple[str, float, float]] = []
+        for seg in segments:
+            for w in seg.words or []:
+                token = w.word.strip()
+                if token:
+                    words.append((token, float(w.start), float(w.end)))
+        return words

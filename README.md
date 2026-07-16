@@ -131,6 +131,29 @@ ends an utterance) and `max_utterance_ms` (hard cap for very long speech).
 > `setuptools` is installed), streaming automatically falls back to a pure-NumPy
 > energy VAD. Install `setuptools` to enable the more noise-robust webrtcvad.
 
+### Real-time mode (words appear as you speak)
+
+Utterance mode waits for a pause. `--realtime` instead keeps a rolling buffer,
+re-decodes it every ~1s, and commits only the prefix that two consecutive decodes
+agree on (the LocalAgreement-2 policy from whisper-streaming). Committed text is
+stable and never rewritten; the unstable tail shows greyed inline as a live
+partial. Latency is roughly 2-3s.
+
+```bash
+s2t-bench stream --realtime -m small --compute-type int8
+s2t-bench stream --realtime --interval 0.8      # snappier, more CPU
+```
+
+Whisper revises its guesses as more audio arrives — a mishearing like "synth"
+appears only in the partial and is silently corrected to "ONT" before it ever
+commits. That's the point of the agreement policy.
+
+> **Cost:** real-time mode re-decodes the whole buffer on every tick, so it uses
+> several times more compute than utterance mode for the same audio. Use `small`
+> + `int8` on CPU (or a GPU) — with a large model it will fall behind real time.
+> Real-time mode is mic-only and doesn't apply `--correct` per tick; run the
+> Gemini pass over the final transcript instead.
+
 ## Extending
 
 ```python
