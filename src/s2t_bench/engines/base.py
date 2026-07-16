@@ -1,9 +1,14 @@
+"""Provider-agnostic transcription engine interface.
+
+Every backend (Google, Whisper, on-prem, ...) implements `TranscriptionEngine`
+so they are fully interchangeable for benchmarking.
+"""
 from __future__ import annotations
 
 import abc
-import contextlib
 import time
 import wave
+import contextlib
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any

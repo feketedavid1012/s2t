@@ -1,3 +1,8 @@
+"""Google Cloud Speech-to-Text v2 engine (Chirp / Chirp 2 models).
+
+Requires:  pip install "s2t-bench[google]"   (google-cloud-speech)
+Auth:      GOOGLE_APPLICATION_CREDENTIALS + GOOGLE_CLOUD_PROJECT
+"""
 from __future__ import annotations
 
 import os
@@ -33,8 +38,8 @@ class GoogleCloudSTTEngine(TranscriptionEngine):
     def _get_client(self):
         if self._client is None:
             # Lazy import so the package loads without the SDK installed.
-            from google.api_core.client_options import ClientOptions
             from google.cloud.speech_v2 import SpeechClient
+            from google.api_core.client_options import ClientOptions
 
             api_endpoint = f"{self.location}-speech.googleapis.com"
             self._client = SpeechClient(

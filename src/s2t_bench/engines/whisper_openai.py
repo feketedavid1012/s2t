@@ -1,3 +1,8 @@
+"""OpenAI Whisper (hosted API) engine.
+
+Requires:  pip install "s2t-bench[whisper]"   (openai)
+Auth:      OPENAI_API_KEY
+"""
 from __future__ import annotations
 
 from pathlib import Path

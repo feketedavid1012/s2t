@@ -1,3 +1,13 @@
+"""Telecom fibre-access domain knowledge: glossary + prompt biasing.
+
+The glossary is used two ways:
+1. Injected into faster-whisper's `initial_prompt` to bias the acoustic decoder
+   toward these terms (helps rare SKUs / equipment names get recognised).
+2. Handed to the Gemini corrector so it normalises the same vocabulary.
+
+Extend `DEFAULT_TELECOM_GLOSSARY` or load your real catalogue / SKU list from a
+JSON file with `load_glossary`.
+"""
 from __future__ import annotations
 
 import json

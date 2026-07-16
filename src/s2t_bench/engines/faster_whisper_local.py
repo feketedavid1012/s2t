@@ -1,4 +1,16 @@
-"""On-prem / self-hosted Whisper via faster-whisper (CTranslate2)."""
+"""On-prem / self-hosted Whisper via faster-whisper (CTranslate2).
+
+Runs fully offline on CPU or GPU. This is the reference "on-prem" engine.
+
+Supports:
+- file transcription (the standard TranscriptionEngine interface),
+- array transcription (`transcribe_array`) so the streaming layer can feed it
+  live mic segments without touching disk,
+- `initial_prompt` biasing, which nudges the decoder toward domain vocabulary
+  (SKUs, XGS-PON, OLT/ONT names) and noticeably improves rare-term accuracy.
+
+Requires:  pip install "s2t-bench[local]"   (faster-whisper)
+"""
 from __future__ import annotations
 
 from typing import Any

@@ -1,3 +1,9 @@
+"""Function tools exposed to the ADK agent.
+
+ADK builds each tool's schema from the function signature + docstring, so the
+docstrings here are load-bearing: keep them accurate and describe every arg.
+Each tool returns a plain dict (JSON-serializable) with a "status" field.
+"""
 from __future__ import annotations
 
 from typing import Any

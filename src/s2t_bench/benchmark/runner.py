@@ -1,3 +1,4 @@
+"""Benchmark orchestration: run N engines over a dataset and aggregate metrics."""
 from __future__ import annotations
 
 import json
@@ -6,7 +7,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
-from ...engines import TranscriptionEngine, build_engine
+from ..engines import TranscriptionEngine, build_engine
 from .dataset import Sample, load_manifest
 from .metrics import character_error_rate, word_error_rate
 

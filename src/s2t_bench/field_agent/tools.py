@@ -1,3 +1,12 @@
+"""Tools for the field transcription agent.
+
+Two tools, called in order by the agent:
+1. transcribe_audio      -> on-prem Whisper, biased with telecom vocabulary
+2. review_and_correct_tool -> Gemini domain review; OK flag or corrected text
+
+Glossary is the built-in telecom set; pass `extra_terms` (comma-separated) to add
+your own catalogue / SKU names for a given job.
+"""
 from __future__ import annotations
 
 from typing import Any

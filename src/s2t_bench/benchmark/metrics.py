@@ -1,3 +1,9 @@
+"""Accuracy metrics for transcription: WER and CER, with light normalization.
+
+Uses `jiwer` when available (recommended, handles alignment robustly) and falls
+back to a small built-in Levenshtein implementation so the package works even
+without the optional dependency.
+"""
 from __future__ import annotations
 
 import re

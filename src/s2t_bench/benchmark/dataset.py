@@ -1,3 +1,11 @@
+"""Dataset loading from a JSONL manifest.
+
+Each line is one sample:
+    {"id": "utt-001", "audio": "data/audio/utt-001.wav", "text": "the reference transcript"}
+
+`audio` may be absolute or relative to the manifest's directory. `id` is optional
+(defaults to the audio filename). `text` is the ground-truth reference.
+"""
 from __future__ import annotations
 
 import json

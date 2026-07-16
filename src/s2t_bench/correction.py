@@ -1,3 +1,16 @@
+"""Gemini-based domain review + correction of transcripts.
+
+Contract (as specified for the field pipeline):
+- If the transcript is already correct and free of irrelevant/noise content,
+  the reviewer flags it OK and changes nothing.
+- If there are errors, it returns the FULL corrected transcript only (no
+  explanations, no summaries, no paraphrasing).
+
+The Gemini call is forced to emit JSON; parsing is defensive regardless.
+
+Requires:  pip install "s2t-bench[google]"   (google-genai)
+Auth:      GOOGLE_API_KEY (AI Studio) or Vertex env vars.
+"""
 from __future__ import annotations
 
 import json
@@ -79,6 +92,24 @@ def _build_user_prompt(transcript: str, glossary: list[str]) -> str:
     )
 
 
+def _check_api_key() -> None:
+    """Fail with an actionable message rather than the SDK's opaque ValueError."""
+    import os
+
+    if os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("true", "1"):
+        return  # Vertex path uses ADC + project/location, not an API key
+    if os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"):
+        return
+    raise RuntimeError(
+        "No Gemini API key found. Set GEMINI_API_KEY (get one at "
+        "https://aistudio.google.com/app/apikey), either as an env var:\n"
+        "    export GEMINI_API_KEY=your-key\n"
+        "or in a .env file at the repo root:\n"
+        "    GEMINI_API_KEY=your-key\n"
+        "(.env requires python-dotenv: pip install python-dotenv)"
+    )
+
+
 def review_and_correct(
     transcript: str,
     glossary: list[str] | None = None,
@@ -91,6 +122,9 @@ def review_and_correct(
         return CorrectionResult("ok", None, False)
 
     glossary = glossary or DEFAULT_TELECOM_GLOSSARY
+
+    if client is None:
+        _check_api_key()
 
     from google import genai  # lazy import
     from google.genai import types

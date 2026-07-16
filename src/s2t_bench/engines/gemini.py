@@ -1,3 +1,12 @@
+"""Gemini multimodal transcription engine.
+
+Uses the Google GenAI SDK to transcribe audio with a Gemini model. Useful as a
+second "Google-based" data point alongside Cloud STT, and handy when you want
+prompt-steerable transcription (formatting, diarization hints, etc.).
+
+Requires:  pip install "s2t-bench[google]"   (google-genai)
+Auth:      GOOGLE_API_KEY  (AI Studio)  OR  Vertex AI env vars
+"""
 from __future__ import annotations
 
 import mimetypes

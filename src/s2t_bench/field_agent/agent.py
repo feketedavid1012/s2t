@@ -1,3 +1,12 @@
+"""ADK field transcription agent.
+
+Pipeline for a given audio file:
+    transcribe_audio -> review_and_correct_tool -> return OK flag or corrected text
+
+Run with:
+    adk run src/s2t_bench/field_agent
+    adk web src/s2t_bench            # then choose the "field_agent" package
+"""
 from __future__ import annotations
 
 import os

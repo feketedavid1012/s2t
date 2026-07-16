@@ -10,15 +10,15 @@ a model or comparing them head-to-head is uniform. The benchmark harness reports
 
 ## Engines included
 
-| Name             | Type            | Backend                                   | Extra     |
-| ---------------- | --------------- | ----------------------------------------- | --------- |
-| `google_cloud`   | Google (cloud)  | Cloud Speech-to-Text v2 (Chirp / Chirp 2) | `google`  |
-| `gemini`         | Google (cloud)  | Gemini multimodal transcription           | `google`  |
-| `whisper_api`    | Whisper (cloud) | OpenAI Whisper API                        | `whisper` |
-| `faster_whisper` | **On-prem**     | faster-whisper (CTranslate2), fully local | `local`   |
+| Name             | Type            | Backend                                  | Extra      |
+| ---------------- | --------------- | ---------------------------------------- | ---------- |
+| `google_cloud`   | Google (cloud)  | Cloud Speech-to-Text v2 (Chirp / Chirp 2)| `google`   |
+| `gemini`         | Google (cloud)  | Gemini multimodal transcription          | `google`   |
+| `whisper_api`    | Whisper (cloud) | OpenAI Whisper API                       | `whisper`  |
+| `faster_whisper` | **On-prem**     | faster-whisper (CTranslate2), fully local| `local`    |
 
 Add your own (NeMo, wav2vec2, whisper.cpp, Vosk, ...) by subclassing
-`TranscriptionEngine` and registering it — see _Extending_ below.
+`TranscriptionEngine` and registering it — see *Extending* below.
 
 ## Install
 
@@ -38,9 +38,7 @@ an offline, on-prem-only setup with no cloud SDKs.
 s2t-bench engines
 
 # Transcribe one file with the on-prem engine
-poetry run python -m s2t_bench.cli transcribe sample-speech-1m.mp3 --engine faster_whisper
-poetry run python -m s2t_bench.cli stream
-s2t-bench transcribe sample-speech-1m.mp3 --engine faster_whisper
+s2t-bench transcribe sample.wav --engine faster_whisper
 
 # Benchmark several engines over a labeled dataset
 s2t-bench benchmark data/manifest.example.jsonl \
@@ -64,11 +62,7 @@ A JSONL manifest, one sample per line. `audio` is absolute or relative to the
 manifest's directory; `text` is the ground-truth reference.
 
 ```json
-{
-  "id": "utt-001",
-  "audio": "audio/utt-001.wav",
-  "text": "the reference transcript"
-}
+{"id": "utt-001", "audio": "audio/utt-001.wav", "text": "the reference transcript"}
 ```
 
 ## The ADK agent
@@ -85,6 +79,57 @@ adk web src/s2t_bench              # browser UI, then pick the "agent" package
 Tools exposed to the agent (`src/s2t_bench/agent/tools.py`):
 `list_engines`, `transcribe`, `run_benchmark_tool`. The agent model defaults to
 `gemini-flash-latest` (override with `S2T_AGENT_MODEL`).
+
+## Field agent: transcribe → domain-correct
+
+A second ADK agent (`src/s2t_bench/field_agent/`) runs the telecom field
+pipeline: it transcribes audio with on-prem Whisper (decoder biased toward
+XGS-PON / GPON / OLT / ONT / SKU vocabulary), then sends the transcript to Gemini
+for a domain review. Gemini either flags it OK and changes nothing, or returns
+the **full corrected transcript only** — no paraphrasing, no summaries.
+
+```bash
+pip install -e ".[local,google,agent]"
+adk run src/s2t_bench/field_agent
+# then: "transcribe and correct /path/to/site-notes.wav"
+```
+
+The correction step is also a standalone tool/command:
+
+```bash
+s2t-bench correct "we swapped the excess pon o l t and updated the sky you"
+# -> XGS-PON / OLT / SKU normalised, full corrected line returned
+```
+
+Domain vocabulary lives in `src/s2t_bench/domain.py`. Drop your real catalogue /
+SKU names into `DEFAULT_TELECOM_GLOSSARY` (or load a JSON list with
+`load_glossary`) — those terms bias both Whisper decoding and the Gemini review.
+Per-job terms can be passed ad hoc with `--extra-terms "SKU-123, MegaSplit-64"`.
+
+## Live streaming (talk continuously to the mic)
+
+faster-whisper is a batch transcriber, so "live" transcription works by
+capturing the mic, using voice-activity detection to cut an utterance at each
+pause, and transcribing that utterance immediately. Engineers can talk
+continuously and see text appear per utterance.
+
+```bash
+pip install -e ".[local,stream]"
+s2t-bench stream                       # live mic; prints each utterance
+s2t-bench stream --correct             # also Gemini-correct each utterance (needs [google])
+s2t-bench stream --source clip.wav     # simulate streaming from a 16 kHz mono WAV
+```
+
+The mic path and the file path drive the exact same VAD + transcription code
+(`src/s2t_bench/streaming.py`), so you can test the pipeline in CI without audio
+hardware. Tune responsiveness with the segmenter's `silence_ms` (how long a pause
+ends an utterance) and `max_utterance_ms` (hard cap for very long speech).
+
+> The `stream` extra installs `sounddevice` (needs the system PortAudio library —
+> `apt install libportaudio2` on Debian/Ubuntu) plus `numpy`. `webrtcvad` is
+> optional: if it can't load (e.g. Python 3.12+ venvs lack `pkg_resources` unless
+> `setuptools` is installed), streaming automatically falls back to a pure-NumPy
+> energy VAD. Install `setuptools` to enable the more noise-robust webrtcvad.
 
 ## Extending
 

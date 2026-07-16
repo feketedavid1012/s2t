@@ -1,4 +1,4 @@
-from s2t_bench.benchmark_agent.benchmark_tools.metrics import (
+from s2t_bench.benchmark.metrics import (
     character_error_rate,
     normalize,
     word_error_rate,

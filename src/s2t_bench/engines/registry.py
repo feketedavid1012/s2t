@@ -1,12 +1,13 @@
+"""Engine registry: name -> engine class, plus a factory from config dicts."""
 from __future__ import annotations
 
 from typing import Any
 
 from .base import TranscriptionEngine
-from .faster_whisper_local import FasterWhisperEngine
-from .gemini import GeminiEngine
 from .google_cloud import GoogleCloudSTTEngine
+from .gemini import GeminiEngine
 from .whisper_openai import WhisperAPIEngine
+from .faster_whisper_local import FasterWhisperEngine
 
 # Register new engines here (or via register_engine at runtime).
 ENGINE_REGISTRY: dict[str, type[TranscriptionEngine]] = {

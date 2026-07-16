@@ -1,9 +1,4 @@
-from .benchmark_agent.benchmark_tools import (
-    character_error_rate,
-    format_table,
-    run_benchmark,
-    word_error_rate,
-)
+"""s2t-bench: pluggable speech-to-text benchmarking with an ADK agent front-end."""
 from .engines import (
     TranscriptionEngine,
     TranscriptionResult,
@@ -11,6 +6,7 @@ from .engines import (
     build_engine,
     register_engine,
 )
+from .benchmark import format_table, run_benchmark, word_error_rate, character_error_rate
 
 __version__ = "0.1.0"
 

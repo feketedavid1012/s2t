@@ -12,6 +12,7 @@ license = { text = "Apache-2.0" }
 dependencies = [
     # Core stays light; heavy SDKs live in optional extras below.
     "jiwer>=3.0",
+    "python-dotenv>=1.0",
 ]
 
 [project.optional-dependencies]
