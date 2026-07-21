@@ -54,6 +54,7 @@ def evaluate_model(
     per_sample = [
         {
             "id": samples[o.index].id,
+            "variant": samples[o.index].id.split("__", 1)[1] if "__" in samples[o.index].id else "clean",
             "wer": round(o.result["wer"], 3),
             "reference": o.result["reference"],
             "hypothesis": o.result["hypothesis"],
