@@ -33,6 +33,11 @@ stream = [
     "setuptools>=68",  # webrtcvad imports pkg_resources; absent in py3.12+ venvs
     "numpy>=1.24",
 ]
+server = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "python-multipart>=0.0.9",
+]
 agent = [
     "google-adk>=2.4",
 ]
@@ -51,6 +56,9 @@ all = [
     "setuptools>=68",
     "numpy>=1.24",
     "google-adk>=2.4",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "python-multipart>=0.0.9",
     "pytest>=8.0",
     "ruff>=0.5",
 ]
@@ -60,6 +68,9 @@ s2t-bench = "s2t_bench.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/s2t_bench"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/s2t_bench/web" = "s2t_bench/web"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

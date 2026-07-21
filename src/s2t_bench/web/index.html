@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>s2t-bench · live transcription</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --card: #fff; --ink: #1a1a19; --muted: #8a8880;
+    --line: #e3e2dc; --accent: #1d9e75; --danger: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font: 16px/1.6 system-ui, sans-serif; color: var(--ink);
+    background: var(--bg); display: flex; justify-content: center;
+    padding: 2rem 1rem;
+  }
+  main { width: 100%; max-width: 46rem; }
+  h1 { font-size: 1.4rem; font-weight: 600; margin: 0 0 .25rem; }
+  .sub { color: var(--muted); margin: 0 0 1.5rem; font-size: .95rem; }
+  .bar {
+    display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  button {
+    font: inherit; font-weight: 500; padding: .5rem 1.1rem; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--card); cursor: pointer;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .status { margin-left: auto; font-size: .9rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+  .dot.live { background: var(--accent); }
+  .dot.err { background: var(--danger); }
+  #out {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 1.25rem; min-height: 12rem; line-height: 1.7; white-space: pre-wrap;
+    word-break: break-word;
+  }
+  #committed { color: var(--ink); }
+  #partial { color: var(--muted); }
+  #out:empty::before, #committed:empty ~ #partial:empty::before {
+    content: "Committed text appears here; the live guess trails in grey.";
+    color: var(--muted);
+  }
+  .hint { font-size: .82rem; color: var(--muted); margin-top: .75rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Live transcription</h1>
+  <p class="sub">On-prem Whisper over WebSocket. Committed words are stable; the grey tail is the live guess and may still change.</p>
+  <div class="bar">
+    <button id="start" class="primary">Start microphone</button>
+    <button id="stop" disabled>Stop</button>
+    <button id="clear">Clear</button>
+    <button id="copy">Copy</button>
+    <label style="display:flex;align-items:center;gap:.4rem;font-size:.9rem;cursor:pointer">
+      <input type="checkbox" id="correctToggle"> correct with Gemini
+    </label>
+    <span class="status"><span id="dot" class="dot"></span><span id="statusText">idle</span></span>
+  </div>
+  <div id="out"><span id="committed"></span><span id="partial"></span></div>
+  <div style="display:flex;align-items:center;gap:.6rem;margin-top:.75rem;font-size:.82rem;color:var(--muted)">
+    <span style="min-width:3.5rem">mic level</span>
+    <span style="flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden">
+      <span id="meter" style="display:block;height:100%;width:0;background:var(--accent);transition:width .08s"></span>
+    </span>
+    <span id="meterPct" style="min-width:2.5rem;text-align:right">0%</span>
+    <span id="sent" style="min-width:6rem;text-align:right">0 KB sent</span>
+  </div>
+  <p class="hint">Mic capture needs localhost or HTTPS. Talk and watch the mic level — if it stays flat, the browser isn't capturing your voice.</p>
+
+  <h2 style="font-size:1rem;font-weight:600;margin:1.75rem 0 .5rem">Pipeline log</h2>
+  <p class="sub" style="margin:0 0 .75rem">Each finished sentence: what Whisper heard (S2T) vs what Gemini returned (LLM). Compare to see which stage is at fault.</p>
+  <table id="log" style="width:100%;border-collapse:collapse;font-size:.92rem">
+    <thead><tr>
+      <th style="text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line);width:50%">S2T (raw)</th>
+      <th style="text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--line)">LLM (corrected)</th>
+    </tr></thead>
+    <tbody id="logBody"></tbody>
+  </table>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const committedEl = $('committed'), partialEl = $('partial');
+const startBtn = $('start'), stopBtn = $('stop');
+let ctx, ws, workletNode, micStream, words = [], bytesSent = 0;
+
+function wsUrl() {
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  const correct = $('correctToggle').checked ? '?correct=true' : '';
+  return `${proto}://${location.host}/ws/transcribe${correct}`;
+}
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function addLogRow(raw, corrected, error, changed) {
+  const tr = document.createElement('tr');
+  const rawCell = `<td style="padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top">${esc(raw)}</td>`;
+  let rhs;
+  if (error) {
+    rhs = `<span style="color:var(--danger)">error: ${esc(error)}</span>`;
+  } else if (corrected === null) {
+    rhs = '<span style="color:var(--muted)">—</span>';
+  } else if (changed) {
+    rhs = `<strong>${esc(corrected)}</strong>`;
+  } else {
+    rhs = `<span style="color:var(--muted)">(no change)</span>`;
+  }
+  tr.innerHTML = rawCell + `<td style="padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top">${rhs}</td>`;
+  $('logBody').appendChild(tr);
+  console.log('[S2T ]', raw);
+  console.log('[LLM ]', error ? ('ERROR ' + error) : corrected);
+}
+function setStatus(text, cls) {
+  $('statusText').textContent = text;
+  $('dot').className = 'dot' + (cls ? ' ' + cls : '');
+}
+function render() {
+  committedEl.textContent = words.join(' ') + (words.length ? ' ' : '');
+}
+
+function updateMeter(buf) {
+  const pcm = new Int16Array(buf);
+  let sum = 0;
+  for (let i = 0; i < pcm.length; i++) { const v = pcm[i] / 32768; sum += v * v; }
+  const rms = Math.sqrt(sum / pcm.length);
+  const pct = Math.min(100, Math.round(rms * 400)); // scale so speech ~30-80%
+  $('meter').style.width = pct + '%';
+  $('meterPct').textContent = pct + '%';
+}
+
+async function start() {
+  if (ws && (ws.readyState === 0 || ws.readyState === 1)) return; // already live
+  startBtn.disabled = true;
+  bytesSent = 0;
+  setStatus('connecting…');
+  try {
+    ws = new WebSocket(wsUrl());
+    ws.binaryType = 'arraybuffer';
+    ws.onopen = () => { setStatus('listening', 'live'); stopBtn.disabled = false; };
+    ws.onclose = () => setStatus('stopped');
+    ws.onerror = () => setStatus('socket error', 'err');
+    ws.onmessage = (ev) => {
+      const m = JSON.parse(ev.data);
+      if (m.error && m.type !== 'sentence') { setStatus('error: ' + m.error, 'err'); return; }
+      if (m.type === 'sentence') {
+        addLogRow(m.raw, m.corrected, m.error, m.changed);
+        return;
+      }
+      // live update
+      if (m.lagging) { setStatus('listening — model too slow, dropping audio', 'err'); }
+      else if ($('statusText').textContent.startsWith('listening —')) { setStatus('listening', 'live'); }
+      if (m.committed && m.committed.length) { words.push(...m.committed); render(); }
+      partialEl.textContent = m.partial ? m.partial : '';
+    };
+
+    micStream = await navigator.mediaDevices.getUserMedia({
+      audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true },
+    });
+    ctx = new AudioContext({ sampleRate: 16000 });
+    await ctx.audioWorklet.addModule('recorder-worklet.js');
+    const source = ctx.createMediaStreamSource(micStream);
+    workletNode = new AudioWorkletNode(ctx, 'recorder-worklet');
+    workletNode.port.onmessage = (e) => {
+      updateMeter(e.data);          // level from the exact bytes we send
+      if (ws.readyState === 1) { ws.send(e.data); bytesSent += e.data.byteLength; }
+      $('sent').textContent = (bytesSent / 1024).toFixed(0) + ' KB sent';
+    };
+    // Route through a muted gain so the graph keeps pulling without echo.
+    const mute = ctx.createGain(); mute.gain.value = 0;
+    source.connect(workletNode); workletNode.connect(mute); mute.connect(ctx.destination);
+  } catch (err) {
+    setStatus('mic error: ' + err.message, 'err');
+    startBtn.disabled = false;
+  }
+}
+
+function stop() {
+  stopBtn.disabled = true;
+  try { workletNode && workletNode.disconnect(); } catch {}
+  try { micStream && micStream.getTracks().forEach((t) => t.stop()); } catch {}
+  try { ctx && ctx.close(); } catch {}
+  try { ws && ws.readyState === 1 && ws.close(); } catch {}
+  partialEl.textContent = '';
+  startBtn.disabled = false;
+  setStatus('stopped');
+}
+
+startBtn.onclick = start;
+stopBtn.onclick = stop;
+$('clear').onclick = () => { words = []; render(); partialEl.textContent = ''; $('logBody').innerHTML = ''; };
+$('copy').onclick = () => navigator.clipboard.writeText(words.join(' '));
+</script>
+</body>
+</html>

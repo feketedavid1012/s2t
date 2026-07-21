@@ -30,6 +30,8 @@ class FasterWhisperEngine(TranscriptionEngine):
         device: str = "auto",
         compute_type: str = "default",
         beam_size: int = 5,
+        realtime_beam_size: int = 1,
+        cpu_threads: int = 0,
         language: str | None = None,
         initial_prompt: str | None = None,
         vad_filter: bool = True,
@@ -39,7 +41,9 @@ class FasterWhisperEngine(TranscriptionEngine):
         self.model_size = model
         self.device = device
         self.compute_type = compute_type
-        self.beam_size = beam_size
+        self.beam_size = beam_size  # file path: accuracy
+        self.realtime_beam_size = realtime_beam_size  # streaming: speed (greedy)
+        self.cpu_threads = cpu_threads  # 0 = let CTranslate2 decide
         self.language = language
         self.initial_prompt = initial_prompt
         self.vad_filter = vad_filter
@@ -47,12 +51,18 @@ class FasterWhisperEngine(TranscriptionEngine):
 
     def _get_model(self):
         if self._model is None:
+            import os
+
             from faster_whisper import WhisperModel  # lazy import
 
+            # Use all physical cores by default; CTranslate2 otherwise picks a
+            # conservative thread count that leaves CPU on the table.
+            threads = self.cpu_threads or (os.cpu_count() or 0)
             self._model = WhisperModel(
                 self.model_size,
                 device=self.device,
                 compute_type=self.compute_type,
+                cpu_threads=threads,
             )
         return self._model
 
@@ -96,10 +106,10 @@ class FasterWhisperEngine(TranscriptionEngine):
         model = self._get_model()
         segments, _ = model.transcribe(
             audio,
-            beam_size=self.beam_size,
+            beam_size=self.realtime_beam_size,
             language=self.language,
             initial_prompt=self.initial_prompt,
-            vad_filter=False,
+            vad_filter=True,
             word_timestamps=True,
             condition_on_previous_text=False,
         )

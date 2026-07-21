@@ -124,6 +124,27 @@ def _cmd_stream(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_serve(args: argparse.Namespace) -> int:
+    import uvicorn
+
+    from .server import build_app
+
+    app = build_app(
+        model=args.model,
+        device=args.device,
+        compute_type=args.compute_type,
+        interval_s=args.interval,
+        extra_terms=args.extra_terms,
+        with_adk=args.with_agent,
+    )
+    where = "unified with ADK agent" if args.with_agent else "standalone"
+    print(f"Serving ({where}) on http://{args.host}:{args.port}")
+    print(f"  Web UI:      http://{args.host}:{args.port}/ui/")
+    print(f"  Swagger UI:  http://{args.host}:{args.port}/docs")
+    uvicorn.run(app, host=args.host, port=args.port)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="s2t-bench", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -198,6 +219,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     s.add_argument("--extra-terms", default="", help="Comma-separated extra vocab")
     s.set_defaults(func=_cmd_stream)
+
+    sv = sub.add_parser("serve", help="FastAPI server: REST + realtime WebSocket")
+    sv.add_argument("--host", default="127.0.0.1")
+    sv.add_argument("--port", type=int, default=8000)
+    sv.add_argument("-m", "--model", default="base", help="Whisper model size")
+    sv.add_argument("--device", default="auto", help="auto|cpu|cuda")
+    sv.add_argument("--compute-type", default="default")
+    sv.add_argument("--interval", type=float, default=1.0)
+    sv.add_argument("--extra-terms", default="")
+    sv.add_argument(
+        "--with-agent", action="store_true",
+        help="Unify with the ADK agent (one process, one Swagger); needs [agent]",
+    )
+    sv.set_defaults(func=_cmd_serve)
     return p
 
 

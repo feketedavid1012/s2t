@@ -154,6 +154,21 @@ commits. That's the point of the agreement policy.
 > Real-time mode is mic-only and doesn't apply `--correct` per tick; run the
 > Gemini pass over the final transcript instead.
 
+## Web UI and server
+
+```bash
+pip install -e ".[local,server]"
+s2t-bench serve --model small --compute-type int8
+# open http://127.0.0.1:8000/  -> live mic transcription in the browser
+```
+
+The web UI (served at `/ui/`, and `/` redirects to it) captures the mic with an
+AudioWorklet, streams 16 kHz PCM to `/ws/transcribe`, and shows committed text
+with the live partial trailing in grey. Endpoints: `WS /ws/transcribe` (realtime)
+and `POST /transcribe` (file upload, optional `?correct=true`). Swagger is at
+`/docs`. Add `--with-agent` to unify the ADK agent into the same process and
+Swagger (needs the `agent` extra).
+
 ## Extending
 
 ```python
