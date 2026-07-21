@@ -1,0 +1,470 @@
+[
+  {
+    "model": "tiny",
+    "compute_type": "int8",
+    "concurrency": 3,
+    "num_samples": 20,
+    "accuracy": {
+      "avg_wer": 0.129,
+      "avg_cer": 0.0497
+    },
+    "speed": {
+      "avg_rtf": 0.123,
+      "concurrency": 3,
+      "num_tasks": 20,
+      "wall_time_s": 14.99,
+      "mean_latency_s": 2.171,
+      "p50_latency_s": 2.131,
+      "p95_latency_s": 2.973,
+      "throughput_per_s": 1.335,
+      "num_errors": 0
+    },
+    "hardware": {
+      "duration_s": 15.75,
+      "cpu_percent_mean": 39.6,
+      "cpu_percent_peak": 75.0,
+      "system_ram_used_peak_mb": 17401.4,
+      "process_rss_peak_mb": 448.9,
+      "tracked_rss_peak_mb": {},
+      "num_cpus": 20,
+      "total_ram_mb": 33434.9,
+      "num_samples": 64
+    },
+    "num_errors": 0,
+    "first_error": null,
+    "per_sample": [
+      {
+        "id": "utt-001_male",
+        "wer": 0.195,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XGS PON tree was excessive optical attenuation on the feeder cable, where a dirty SCA PC connector pushed the receive power below minus 28 decibel millawatts and drove the ONT out of its optical budget."
+      },
+      {
+        "id": "utt-001_female",
+        "wer": 0.171,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XG-SPO entry was excessive optical attenuation on the feeder cable, where dirty SCAPC connector pushed the received power below minus 28 decibel millawatts, and drove the O&T out of its optical budget."
+      },
+      {
+        "id": "utt-002_male",
+        "wer": 0.121,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers trace the intermittent packet loss to a failing SFP Plus on the OLT Uplink card. Who's the graded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI."
+      },
+      {
+        "id": "utt-002_female",
+        "wer": 0.061,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers trace the intermittent packet loss to a failing SFP Plus on the OLD Uplink card whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI."
+      },
+      {
+        "id": "utt-003_male",
+        "wer": 0.139,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropped out across the street cabinet, the investigation found that a cracked 132 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-003_female",
+        "wer": 0.083,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked 1-32 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-004_male",
+        "wer": 0.029,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customer's slow speeds were caused by VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port."
+      },
+      {
+        "id": "utt-004_female",
+        "wer": 0.059,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the O&T, leaving DHCP requests unanswered and blocking upstream traffic on the G-Pone port."
+      },
+      {
+        "id": "utt-005_male",
+        "wer": 0.171,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC slash APC connector, raising a tenuation on the distribution cable and forcing the affected OMU offline during periods of high humidity."
+      },
+      {
+        "id": "utt-005_female",
+        "wer": 0.314,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Root cost analysis confirmed that water ingress at the ODF had corroded a pig tail near the LC slash APC connector, raising attenuation on the distribution cable, enforcing the affected O and U offline during periods of high humidity."
+      },
+      {
+        "id": "utt-006_male",
+        "wer": 0.059,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XGPO and subscribers during peak afternoon load."
+      },
+      {
+        "id": "utt-006_female",
+        "wer": 0.118,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several extra-poll and subscribers during peak after new load."
+      },
+      {
+        "id": "utt-007_male",
+        "wer": 0.031,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatch part number on the replacement SFP module broke the wavelength plan. So the downstream signal fell outside spec, and the ONT failed to range against the OLT."
+      },
+      {
+        "id": "utt-007_female",
+        "wer": 0.062,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan. So the downstream signal fell outside spec and the O&T failed to range against the OLD."
+      },
+      {
+        "id": "utt-008_male",
+        "wer": 0.121,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC address, flapping in the MDU, was traced to a loose patch panel connection in the riser, which intimately broke the fiber continuity and forced repeated reprovisioning of the ontid."
+      },
+      {
+        "id": "utt-008_female",
+        "wer": 0.091,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC address, Flapping in the MDU, was traced to a loose patch panel connection in the riser, which intermittently broke the fiber continuity and forced repeated reprovisioning of the O&TID."
+      },
+      {
+        "id": "utt-009_male",
+        "wer": 0.206,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the optical-term domain reflectometer showed a sharp reflection 200 meters out. Confirming that the true root cause was a bend-induced macro bend on the distribution cable, rather than an OLT fault."
+      },
+      {
+        "id": "utt-009_female",
+        "wer": 0.353,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the obstacle time-domed effectometer showed the sharp reflection 200 meters out, confirming that the true root cause was abandoned due to macro bend on the distribution cable rather than an OLT fault."
+      },
+      {
+        "id": "utt-010_male",
+        "wer": 0.111,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU, Miss Handled OMCI Messages, after a DHCP lease renewal. Dropping the data VLAN, and producing the false impression of an upstream fiberbrake in the access network."
+      },
+      {
+        "id": "utt-010_female",
+        "wer": 0.083,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU missed handled OMCI messages after a DHCP lease renewal, dropping the data VLAN, and producing the false impression of an upstream fiber break in the access network."
+      }
+    ]
+  },
+  {
+    "model": "base",
+    "compute_type": "int8",
+    "concurrency": 3,
+    "num_samples": 20,
+    "accuracy": {
+      "avg_wer": 0.0781,
+      "avg_cer": 0.037
+    },
+    "speed": {
+      "avg_rtf": 0.206,
+      "concurrency": 3,
+      "num_tasks": 20,
+      "wall_time_s": 25.34,
+      "mean_latency_s": 3.628,
+      "p50_latency_s": 3.507,
+      "p95_latency_s": 4.655,
+      "throughput_per_s": 0.789,
+      "num_errors": 0
+    },
+    "hardware": {
+      "duration_s": 25.75,
+      "cpu_percent_mean": 38.3,
+      "cpu_percent_peak": 66.3,
+      "system_ram_used_peak_mb": 17843.5,
+      "process_rss_peak_mb": 672.8,
+      "tracked_rss_peak_mb": {},
+      "num_cpus": 20,
+      "total_ram_mb": 33434.9,
+      "num_samples": 104
+    },
+    "num_errors": 0,
+    "first_error": null,
+    "per_sample": [
+      {
+        "id": "utt-001_male",
+        "wer": 0.073,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable where a dirty SCAPC connector pushed the received power below minus 28 decibel millawatts and drove the ONT out of its optical budget."
+      },
+      {
+        "id": "utt-001_female",
+        "wer": 0.122,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XGSPO entry was excessive optical attenuation on the feeder cable, where a dirty SCAPC connector pushed the received power below minus 28 decibel milliwatts and drove the ONT out of its optical budget."
+      },
+      {
+        "id": "utt-002_male",
+        "wer": 0.03,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers trace the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI."
+      },
+      {
+        "id": "utt-002_female",
+        "wer": 0.121,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers trace the intermittent pocket laws to a failing SFP+, on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT, provisioning through OMCI."
+      },
+      {
+        "id": "utt-003_male",
+        "wer": 0.139,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropped out across the street cabinet, the investigation found that a cracked 132 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-003_female",
+        "wer": 0.111,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropouts across the street cabinet, the investigation found that a cracked 1-32 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-004_male",
+        "wer": 0.029,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customer's slow speeds were caused by VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port."
+      },
+      {
+        "id": "utt-004_female",
+        "wer": 0.029,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the G-Pone port."
+      },
+      {
+        "id": "utt-005_male",
+        "wer": 0.114,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Root cause analysis confirmed that water ingress at the ODF had corroded a pig tail near the LC-slash APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity."
+      },
+      {
+        "id": "utt-005_female",
+        "wer": 0.143,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Root-caused analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC-slash-APC connector, raising attenuation on the distribution cable, enforcing the affected ONU offline during periods of high humidity."
+      },
+      {
+        "id": "utt-006_male",
+        "wer": 0.0,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet which caused thermal throttling on the uplink and dropped several XGPON subscribers during peak afternoon load."
+      },
+      {
+        "id": "utt-006_female",
+        "wer": 0.059,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet which caused thermal throttling on the uplink and dropped several XG pawn subscribers during peak afternoon load."
+      },
+      {
+        "id": "utt-007_male",
+        "wer": 0.0,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan. So the downstream signal fell outside spec and the ONT failed to range against the OLT."
+      },
+      {
+        "id": "utt-007_female",
+        "wer": 0.0,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan. So the downstream signal fell outside spec and the ONT failed to range against the O-L-T."
+      },
+      {
+        "id": "utt-008_male",
+        "wer": 0.091,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC address flapping in the M.D.U. was traced to a loose patch panel connection in the riser, which intermittently broke the fiber continuity and forced repeated reprovisioning of the haunted."
+      },
+      {
+        "id": "utt-008_female",
+        "wer": 0.121,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC adjusts flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fiber continuity and forced repeated reprovisioning of the ONTID."
+      },
+      {
+        "id": "utt-009_male",
+        "wer": 0.147,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the optical-time-domain reflectometer showed a sharp reflection 200 meters out, confirming that the true root cause was a bend-induced macro-bend on the distribution cable, rather than an OLT fault."
+      },
+      {
+        "id": "utt-009_female",
+        "wer": 0.176,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the obstacle time-domain reflectometer showed the sharp reflection 200 meters out, confirming that the true root cause was a bend-induced macroband on the distribution cable rather than an OLT fault."
+      },
+      {
+        "id": "utt-010_male",
+        "wer": 0.028,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal. Dropping the data VLAN and producing the false impression of an upstream fiber break in the access network."
+      },
+      {
+        "id": "utt-010_female",
+        "wer": 0.028,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN, and producing the false impression of an upstream fiber break in the access network."
+      }
+    ]
+  },
+  {
+    "model": "small",
+    "compute_type": "int8",
+    "concurrency": 3,
+    "num_samples": 20,
+    "accuracy": {
+      "avg_wer": 0.0748,
+      "avg_cer": 0.0333
+    },
+    "speed": {
+      "avg_rtf": 0.454,
+      "concurrency": 3,
+      "num_tasks": 20,
+      "wall_time_s": 54.97,
+      "mean_latency_s": 7.956,
+      "p50_latency_s": 8.027,
+      "p95_latency_s": 9.164,
+      "throughput_per_s": 0.364,
+      "num_errors": 0
+    },
+    "hardware": {
+      "duration_s": 55.97,
+      "cpu_percent_mean": 40.4,
+      "cpu_percent_peak": 83.9,
+      "system_ram_used_peak_mb": 18778.3,
+      "process_rss_peak_mb": 1364.8,
+      "tracked_rss_peak_mb": {},
+      "num_cpus": 20,
+      "total_ram_mb": 33434.9,
+      "num_samples": 225
+    },
+    "num_errors": 0,
+    "first_error": null,
+    "per_sample": [
+      {
+        "id": "utt-001_male",
+        "wer": 0.171,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XGS PON tree was excessive optical attenuation on the feeder cable, where a dirty SCA PC connector pushed the received power below minus 28 decibel milliwatts and drove the ONT out of its optical budget."
+      },
+      {
+        "id": "utt-001_female",
+        "wer": 0.073,
+        "reference": "The root cause of the service outage on the XGS-PON tree was excessive optical attenuation on the feeder cable, where a dirty SC/APC connector pushed the received power below minus twenty-eight dBm and drove the ONT out of its optical budget.",
+        "hypothesis": "The root cause of the service outage on the XGSPON tree was excessive optical attenuation on the feeder cable, where a dirty SC-APC connector pushed the received power below minus 28 decibel milliwatts and drove the ONT out of its optical budget."
+      },
+      {
+        "id": "utt-002_male",
+        "wer": 0.061,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers traced the intermittent packet loss to a failing SFP Plus on the OLT Uplinkard, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI."
+      },
+      {
+        "id": "utt-002_female",
+        "wer": 0.0,
+        "reference": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI.",
+        "hypothesis": "Field engineers traced the intermittent packet loss to a failing SFP plus on the OLT uplink card, whose degraded transmit power caused CRC errors upstream and repeatedly reset the ONT provisioning through OMCI."
+      },
+      {
+        "id": "utt-003_male",
+        "wer": 0.056,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked 1 to 32 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-003_female",
+        "wer": 0.083,
+        "reference": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked one to thirty-two splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable.",
+        "hypothesis": "After the mass ONT dropout across the street cabinet, the investigation found that a cracked 1-32 splitter in the ODN had introduced fluctuating insertion loss, eroding the optical budget on every downstream drop cable."
+      },
+      {
+        "id": "utt-004_male",
+        "wer": 0.029,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customers' slow speeds were caused by VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port."
+      },
+      {
+        "id": "utt-004_female",
+        "wer": 0.059,
+        "reference": "The customer's slow speeds were caused by a VLAN misconfiguration during commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the GPON port.",
+        "hypothesis": "The customer's slow speeds were caused by a VLAN misconfiguration doing commissioning, where the wrong service profile was pushed to the ONT, leaving DHCP requests unanswered and blocking upstream traffic on the G-Pone port."
+      },
+      {
+        "id": "utt-005_male",
+        "wer": 0.143,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Rootcore's analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC slash APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity."
+      },
+      {
+        "id": "utt-005_female",
+        "wer": 0.2,
+        "reference": "Root cause analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC/APC connector, raising attenuation on the distribution cable and forcing the affected ONU offline during periods of high humidity.",
+        "hypothesis": "Root-caused analysis confirmed that water ingress at the ODF had corroded a pigtail near the LC slash APC connector, raising attenuation on the distribution cable, enforcing the affected ONU offline during periods of high humidity."
+      },
+      {
+        "id": "utt-006_male",
+        "wer": 0.0,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XGPON subscribers during peak afternoon load."
+      },
+      {
+        "id": "utt-006_female",
+        "wer": 0.059,
+        "reference": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG-PON subscribers during peak afternoon load.",
+        "hypothesis": "The recurring OLT line card alarms were ultimately linked to an overheating chassis in the poorly ventilated cabinet, which caused thermal throttling on the uplink and dropped several XG Pawn subscribers during peak afternoon load."
+      },
+      {
+        "id": "utt-007_male",
+        "wer": 0.031,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatch part number on the replacement SFP module broke the wavelength plan. So the downstream signal fell outside spec and the ONT failed to range against the OLT."
+      },
+      {
+        "id": "utt-007_female",
+        "wer": 0.0,
+        "reference": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan, so the downstream signal fell outside spec and the ONT failed to range against the OLT.",
+        "hypothesis": "Engineers determined that a mismatched part number on the replacement SFP module broke the wavelength plan so the downstream signal fell outside spec and the ONT failed to range against the OLT."
+      },
+      {
+        "id": "utt-008_male",
+        "wer": 0.091,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fiber continuity and forced repeated reprovisioning of the haunted."
+      },
+      {
+        "id": "utt-008_female",
+        "wer": 0.091,
+        "reference": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fibre continuity and forced repeated re-provisioning of the ONT ID.",
+        "hypothesis": "The persistent MAC address flapping in the MDU was traced to a loose patch panel connection in the riser, which intermittently broke the fiber continuity and forced repeated reprovisioning of the ONTID."
+      },
+      {
+        "id": "utt-009_male",
+        "wer": 0.147,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the optical time domain reflectometer showed a sharp reflection 200 meters out, confirming that the true root cause was a bend-induced macro-bend on the distribution cable rather than an OLT fault."
+      },
+      {
+        "id": "utt-009_female",
+        "wer": 0.147,
+        "reference": "During the outage the optical time-domain reflectometer showed a sharp reflection two hundred metres out, confirming that the true root cause was a bend-induced macrobend on the distribution cable rather than an OLT fault.",
+        "hypothesis": "During the outage, the obstacle time-domain reflectometer showed a sharp reflection 200 meters out, confirming that the true root cause was a bend-induced macroband on the distribution cable rather than an OLT fault."
+      },
+      {
+        "id": "utt-010_male",
+        "wer": 0.028,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fiber break in the access network."
+      },
+      {
+        "id": "utt-010_female",
+        "wer": 0.028,
+        "reference": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fibre break in the access network.",
+        "hypothesis": "The escalation revealed that a firmware defect on the ONU mishandled OMCI messages after a DHCP lease renewal, dropping the data VLAN and producing the false impression of an upstream fiber break in the access network."
+      }
+    ]
+  }
+]

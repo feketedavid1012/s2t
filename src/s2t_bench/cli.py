@@ -147,6 +147,53 @@ def _cmd_serve(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_eval_whisper(args: argparse.Namespace) -> int:
+    from .eval.whisper_eval import evaluate_models
+
+    results = evaluate_models(
+        model_sizes=args.models,
+        manifest_path=args.manifest,
+        concurrency=args.concurrency,
+        compute_type=args.compute_type,
+        limit=args.limit,
+        output_dir=args.output,
+    )
+    for r in results:
+        print(f"{r['model']:>10}  WER {r['accuracy']['avg_wer']:.3f}  "
+              f"RTF {r['speed']['avg_rtf']:.2f}  "
+              f"p95 {r['speed']['p95_latency_s']:.2f}s  "
+              f"RAM {r['hardware']['process_rss_peak_mb']:.0f}MB  "
+              f"CPU {r['hardware']['cpu_percent_peak']:.0f}%"
+              f"{r['num_errors']}/{r['num_samples']} failed — e.g. {r['first_error']}")
+    if args.output:
+        print(f"\nSaved to {args.output}/")
+    return 0
+
+
+def _cmd_eval_gemma(args: argparse.Namespace) -> int:
+    from .eval.gemma.gemma_eval import evaluate_models
+
+    results = evaluate_models(
+        models=args.models,
+        tasks=args.tasks,
+        concurrency=args.concurrency,
+        host=args.host,
+        output_dir=args.output,
+    )
+    for r in results:
+        line = f"{r['model']:>14}"
+        if "correction" in r:
+            line += f"  corr-WER {r['correction']['quality']['wer']:.3f}"
+        if "json" in r:
+            q = r["json"]["quality"]
+            line += f"  json-valid {q['schema_valid_rate']:.2f}  field-acc {q['field_accuracy']:.2f}"
+        line += f"  RAM {r['hardware']['tracked_rss_peak_mb'].get('ollama', 0):.0f}MB"
+        print(line)
+    if args.output:
+        print(f"\nSaved to {args.output}/")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="s2t-bench", description=__doc__)
     sub = p.add_subparsers(dest="command", required=True)
@@ -245,6 +292,26 @@ def build_parser() -> argparse.ArgumentParser:
              "being dropped as non-speech).",
     )
     sv.set_defaults(func=_cmd_serve)
+
+    ew = sub.add_parser("eval-whisper", help="Evaluate Whisper sizes: accuracy + speed + hardware")
+    ew.add_argument("manifest", help="JSONL manifest with audio + reference text")
+    ew.add_argument("-m", "--models", nargs="+", default=["tiny", "base", "small"],
+                    help="Model sizes to compare")
+    ew.add_argument("-c", "--concurrency", type=int, default=3)
+    ew.add_argument("--compute-type", default="int8")
+    ew.add_argument("-n", "--limit", type=int, default=None)
+    ew.add_argument("-o", "--output", default=None, help="Directory for results")
+    ew.set_defaults(func=_cmd_eval_whisper)
+
+    eg = sub.add_parser("eval-gemma", help="Evaluate local Gemma (Ollama): correction + JSON schema")
+    eg.add_argument("-m", "--models", nargs="+", default=["gemma3:1b", "gemma3:4b"],
+                    help="Ollama model tags (pull them first)")
+    eg.add_argument("-t", "--tasks", nargs="+", default=["correction", "json"],
+                    choices=["correction", "json"])
+    eg.add_argument("-c", "--concurrency", type=int, default=3)
+    eg.add_argument("--host", default="http://localhost:11434")
+    eg.add_argument("-o", "--output", default=None, help="Directory for results")
+    eg.set_defaults(func=_cmd_eval_gemma)
     return p
 
 

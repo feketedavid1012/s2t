@@ -169,6 +169,35 @@ and `POST /transcribe` (file upload, optional `?correct=true`). Swagger is at
 `/docs`. Add `--with-agent` to unify the ADK agent into the same process and
 Swagger (needs the `agent` extra).
 
+## Evaluation harness
+
+Two evaluators, each measuring quality + latency/throughput under simulated
+concurrency + CPU/RAM footprint. Results save as JSON and a Markdown summary.
+
+### Whisper model sizes
+
+```bash
+pip install -e ".[local,eval]"
+s2t-bench eval-whisper data/manifest.jsonl -m tiny base small -c 3 -o results/whisper/
+```
+
+Reports per size: WER/CER (accuracy), RTF + p95 latency + throughput (speed under
+`-c` concurrent transcriptions), and peak process RAM + CPU%.
+
+### Gemma via Ollama (correction + JSON schema)
+
+```bash
+ollama pull gemma3:1b && ollama pull gemma3:4b     # once
+pip install -e ".[eval]"
+s2t-bench eval-gemma -m gemma3:1b gemma3:4b -t correction json -c 3 -o results/gemma/
+```
+
+Two tasks scored: `correction` (WER of cleaned transcript vs expected) and `json`
+(parse rate, schema-valid rate, and per-field accuracy against the fault-report
+schema). Hardware tracks the `ollama` process RSS (the model's RAM footprint).
+Test data is 16 hand-written telecom samples in
+`src/s2t_bench/eval/gemma/samples.py` — extend with your own.
+
 ## Extending
 
 ```python

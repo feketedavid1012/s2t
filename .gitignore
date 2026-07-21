@@ -6,8 +6,6 @@ venv/
 dist/
 build/
 .env
-data/audio/
-results/
 .pytest_cache/
 .ruff_cache/
 unset
