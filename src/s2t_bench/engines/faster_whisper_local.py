@@ -43,6 +43,7 @@ class FasterWhisperEngine(TranscriptionEngine):
         self.compute_type = compute_type
         self.beam_size = beam_size  # file path: accuracy
         self.realtime_beam_size = realtime_beam_size  # streaming: speed (greedy)
+        self.realtime_vad = True  # streaming VAD; can be disabled if it over-cuts
         self.cpu_threads = cpu_threads  # 0 = let CTranslate2 decide
         self.language = language
         self.initial_prompt = initial_prompt
@@ -109,7 +110,7 @@ class FasterWhisperEngine(TranscriptionEngine):
             beam_size=self.realtime_beam_size,
             language=self.language,
             initial_prompt=self.initial_prompt,
-            vad_filter=True,
+            vad_filter=self.realtime_vad,
             word_timestamps=True,
             condition_on_previous_text=False,
         )

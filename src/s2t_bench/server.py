@@ -50,7 +50,7 @@ def _build_engine(model, device, compute_type, extra_terms):
     return engine, glossary
 
 
-def _add_stt_routes(app, engine, glossary, interval_s):
+def _add_stt_routes(app, engine, glossary, interval_s, silence_rms=0.005):
     """Attach transcription routes to any FastAPI app (ours or ADK's)."""
     import threading
 
@@ -117,7 +117,7 @@ def _add_stt_routes(app, engine, glossary, interval_s):
         """
         await ws.accept()
         correct = ws.query_params.get("correct", "false").lower() in ("1", "true", "yes")
-        transcriber = RealtimeTranscriber(engine)
+        transcriber = RealtimeTranscriber(engine, silence_rms=silence_rms)
         loop = asyncio.get_running_loop()
         last = time.monotonic()
         sentence_words: list[str] = []
@@ -250,6 +250,8 @@ def build_app(
     extra_terms="",
     with_adk=False,
     mount_agent=True,
+    silence_rms=0.005,
+    vad=True,
 ):
     """Construct the FastAPI app.
 
@@ -263,18 +265,19 @@ def build_app(
     from fastapi.responses import HTMLResponse
 
     engine, glossary = _build_engine(model, device, compute_type, extra_terms)
+    engine.realtime_vad = vad
 
     if with_adk:
         from google.adk.cli.fast_api import get_fast_api_app
 
         app = get_fast_api_app(agents_dir=ADK_APPS_DIR, web=True)
         app.title = "s2t-bench + ADK"
-        _add_stt_routes(app, engine, glossary, interval_s)
+        _add_stt_routes(app, engine, glossary, interval_s, silence_rms)
         _mount_ui(app)
         return app
 
     app = FastAPI(title="s2t-bench", version="0.1.0")
-    _add_stt_routes(app, engine, glossary, interval_s)
+    _add_stt_routes(app, engine, glossary, interval_s, silence_rms)
     _mount_ui(app)
 
     from fastapi.responses import RedirectResponse

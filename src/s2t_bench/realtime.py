@@ -142,7 +142,7 @@ class RealtimeTranscriber:
         engine,
         max_buffer_s: float = 12.0,
         min_audio_s: float = 1.0,
-        silence_rms: float = 0.008,
+        silence_rms: float = 0.005,
     ) -> None:
         self.engine = engine
         self.max_buffer_s = max_buffer_s

@@ -136,6 +136,8 @@ def _cmd_serve(args: argparse.Namespace) -> int:
         interval_s=args.interval,
         extra_terms=args.extra_terms,
         with_adk=args.with_agent,
+        silence_rms=args.silence_rms,
+        vad=not args.no_vad,
     )
     where = "unified with ADK agent" if args.with_agent else "standalone"
     print(f"Serving ({where}) on http://{args.host}:{args.port}")
@@ -231,6 +233,16 @@ def build_parser() -> argparse.ArgumentParser:
     sv.add_argument(
         "--with-agent", action="store_true",
         help="Unify with the ADK agent (one process, one Swagger); needs [agent]",
+    )
+    sv.add_argument(
+        "--silence-rms", type=float, default=0.005,
+        help="Skip decoding buffers quieter than this RMS. Lower = catches quiet "
+             "speech but risks silence hallucinations. 0 disables the gate.",
+    )
+    sv.add_argument(
+        "--no-vad", action="store_true",
+        help="Disable faster-whisper's VAD filter (use if quiet/short speech is "
+             "being dropped as non-speech).",
     )
     sv.set_defaults(func=_cmd_serve)
     return p

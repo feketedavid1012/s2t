@@ -150,7 +150,10 @@ async function start() {
       // live update
       if (m.lagging) { setStatus('listening — model too slow, dropping audio', 'err'); }
       else if ($('statusText').textContent.startsWith('listening —')) { setStatus('listening', 'live'); }
-      if (m.committed && m.committed.length) { words.push(...m.committed); render(); }
+      if (m.committed && m.committed.length) {
+        console.log('[commit]', m.committed.join(' '));
+        words.push(...m.committed); render();
+      }
       partialEl.textContent = m.partial ? m.partial : '';
     };
 
