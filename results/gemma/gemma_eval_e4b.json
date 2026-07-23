@@ -1,0 +1,1925 @@
+[
+  {
+    "model": "gemma4:e4b",
+    "concurrency": 3,
+    "num_samples": 40,
+    "correction": {
+      "quality": {
+        "wer": 0.0426
+      },
+      "perf": {
+        "concurrency": 3,
+        "num_tasks": 40,
+        "wall_time_s": 648.77,
+        "mean_latency_s": 48.322,
+        "p50_latency_s": 46.48,
+        "p95_latency_s": 77.721,
+        "throughput_per_s": 0.062,
+        "num_errors": 0
+      },
+      "num_errors": 0,
+      "first_error": null,
+      "per_sample": [
+        {
+          "id": "flt-1017",
+          "wer": 0.0,
+          "expected": "Fault 1017, customer had no dial tone and no broadband. The ONT was completely dead. Found the PSU output at zero volts. Swapped power supply, SKU PSU-12V-2A, all services back.",
+          "got": "Fault 1017 customer had no dial tone and no broadband, the ONT was completely dead, found the PSU output at zero volts, swapped power supply SKU PSU-12V-2A, all services back"
+        },
+        {
+          "id": "flt-1018",
+          "wer": 0.0,
+          "expected": "Ticket 1018, reported as a line fault but on attendance everything tested clean. Optical at -21 dBm, ONT stable. Turned out customer had unplugged their own router. No network fault.",
+          "got": "Ticket 1018, reported as a line fault but on attendance everything tested clean, optical at -21 dBm, ONT stable, turned out customer had unplugged their own router, no network fault"
+        },
+        {
+          "id": "flt-1019",
+          "wer": 0.0,
+          "expected": "Fault 1019, OLT reported a PON alarm. Found both a faulty SFP+ on the line card and a damaged patch cord in the ODF. Replaced SFP, SKU SFP-P-10G, and the patch lead, SKU PC-LC-APC-2M, alarm cleared.",
+          "got": "fault 1019. OLT reported a PON alarm. Found both a faulty SFP+ on the line card and a damaged patch cord in the ODF. Replaced SFP SKU: SFP-P-10G and the patch lead SKU: PC-LC-APC-2M. Alarm cleared."
+        },
+        {
+          "id": "flt-1020",
+          "wer": 0.0,
+          "expected": "Job 1020, booked as slow speeds. Actually found the ONT on old firmware causing rate capping. Upgraded firmware to 3.4, speeds back to full, no parts used.",
+          "got": "Job 1020 booked as slow speeds, actually found the ONT on old firmware causing rate capping, upgraded firmware to 3.4, speeds back to full, no parts used"
+        },
+        {
+          "id": "flt-1021",
+          "wer": 0.0,
+          "expected": "Fault 1021, whole cabinet down reported as OLT failure, but root cause was a tripped breaker feeding the cabinet. Reset power and checked load, OLT and all ONTs recovered. Not a hardware fault.",
+          "got": "Fault 1021, whole cabinet down reported as OLT failure, but root cause was a tripped breaker feeding the cabinet. Reset power and checked load. OLT and all ONTs recovered, not a hardware fault."
+        },
+        {
+          "id": "flt-1022",
+          "wer": 0.0,
+          "expected": "Ticket 1022, intermittent drops traced to a poorly seated line card in the OLT chassis. Reseated the card, no replacement needed, errors stopped.",
+          "got": "Ticket 1022, intermittent drops, traced to a poorly seated line card in the OLT chassis, reseated the card, no replacement needed, errors stopped"
+        },
+        {
+          "id": "flt-1023",
+          "wer": 0.0,
+          "expected": "Fault 1023, no service to a new build. Found the drop had never been jumpered at the splitter. Jumpered the drop with a new patch, SKU PC-SC-APC-1M, service came up.",
+          "got": "Fault 1023, no service to a new build. Found the drop had never been jumpered at the splitter. Jumpered the drop with a new patch SKU PC-SC-APC-1m. Service came up."
+        },
+        {
+          "id": "flt-1024",
+          "wer": 0.0,
+          "expected": "Job 1024, customer reported total loss. Engineer attended but it was a no-access, gated property, no answer. Card left, rebooked, no diagnosis possible.",
+          "got": "Job 1024, customer reported total loss. Engineer attended, but it was a no-access, gated property, no answer. Card left, rebooked. No diagnosis possible."
+        },
+        {
+          "id": "flt-1025",
+          "wer": 0.062,
+          "expected": "Fault 1025, high error rate on the PON. Found water ingress in a footway joint had corroded a splice. Re-spliced the affected fibres and fitted a new closure, SKU CLO-48, errors gone.",
+          "got": "Fault 1025: High error rate on the PON. Found water ingress in a footway joint that had corroded a splice. Re-spliced the affected fibers and fitted a new closure SKU CLO-48. Errors gone."
+        },
+        {
+          "id": "flt-1026",
+          "wer": 0.12,
+          "expected": "Ticket 1026, ONU would not register, OMCI failing. Found the wrong service profile applied during commissioning. Reapplied the correct profile, ONU registered and traffic flowed.",
+          "got": "ticket ten twenty six, ONU would not register, OMCI failing, found the wrong service profile applied during commissioning, reapplied the correct profile, ONU registered and traffic flowed"
+        },
+        {
+          "id": "flt-1027",
+          "wer": 0.0,
+          "expected": "Fault 1027, marginal optical budget on a long drop. Measured -27 dBm. Replaced a suspect ONT, SKU ONT-5678, but no improvement. Real cause was an aged splitter, escalated for ODN works.",
+          "got": "Fault 1027, marginal optical budget on a long drop, measured -27 dBm, replaced a suspect ONT SKU ONT-5678 but no improvement, real cause was an aged splitter, escalated for ODN works"
+        },
+        {
+          "id": "flt-1028",
+          "wer": 0.0,
+          "expected": "Job 1028, packet loss on the uplink. Found a failing SFP+ running hot on the OLT. Replaced SFP, SKU SFP-P-10G, CRC errors stopped and loss cleared.",
+          "got": "Job 1028: Packet loss on the uplink. Found a failing SFP+ running hot on the OLT. Replaced SFP SKU SFP-P-10G. CRC errors stopped and loss cleared."
+        },
+        {
+          "id": "flt-1029",
+          "wer": 0.0,
+          "expected": "Fault 1029, customer reported slow WiFi. Tested the line and it was full speed at the ONT. Issue is the customer's own WiFi coverage. Advised on router placement, no fault on our network.",
+          "got": "Fault 1029, customer reported slow Wi-Fi. Tested the line and it was full speed at the ONT. Issue is the customer's own Wi-Fi coverage. Advised on router placement; no fault on our network."
+        },
+        {
+          "id": "flt-1030",
+          "wer": 0.114,
+          "expected": "Ticket 1030, mass outage on a street. Digger struck the feeder duct and severed a 288-fibre cable. Emergency splice team restored with a new closure, SKU CLO-288, and spare fibre, service back to all homes.",
+          "got": "ticket ten thirty, mass outage on a street, digger struck the feeder duct and severed a 288 fibre cable, emergency splice team restored with a new closure SKU CLO-288 and spare fibre, service back to all homes"
+        },
+        {
+          "id": "flt-1031",
+          "wer": 0.0,
+          "expected": "Fault 1031, ONT rebooting randomly. Swapped the ONT, SKU ONT-5678, as a precaution but it kept happening. Found a flaky power socket in the property. Advised customer to use a different socket, stable after.",
+          "got": "Fault 1031. ONT rebooting randomly. Swapped the ONT SKU ONT-5678 as a precaution, but it kept happening. Found a flaky power socket in the property, advised customer to use a different socket. Stable after."
+        },
+        {
+          "id": "flt-1032",
+          "wer": 0.0,
+          "expected": "Job 1032, no internet after a house move. Found the ONT had been provisioned on the wrong VLAN. Corrected VLAN to 500 and pushed the service profile, DHCP came up and internet worked.",
+          "got": "Job 10:32. No internet after a house move. Found the ONT had been provisioned on the wrong VLAN, corrected VLAN to 500, and pushed the service profile. DHCP came up and internet worked."
+        },
+        {
+          "id": "flt-1033",
+          "wer": 0.037,
+          "expected": "Fault 1033, degraded speeds on a whole splitter leg. Found a cracked 1:16 splitter with fluctuating insertion loss. Replaced splitter, SKU SPL-1-16, all legs back to budget.",
+          "got": "Fault 1033, degraded speeds on a whole splitter leg. Found a cracked 1x16 splitter with fluctuating insertion loss. Replaced splitter SKU SPL-116. All legs back to budget."
+        },
+        {
+          "id": "flt-1034",
+          "wer": 0.25,
+          "expected": "Ticket 1034, OLT chassis fan tray alarm. Replaced the fan tray, SKU FAN-OLT-X, before it overheated, no service impact, preventative.",
+          "got": "Ticket 1034, OLT chassis fan tray alarm. Replaced the fan tray SKU fan dash OLT dash X before it overheated. No service impact, preventative."
+        },
+        {
+          "id": "flt-1035",
+          "wer": 0.067,
+          "expected": "Fault 1035, customer reported no service. Found the fibre had been disconnected at the ONT by a third-party engineer during other works. Reconnected the SC/APC connector, service restored, no parts.",
+          "got": "Fault 1035, customer reported no service. Found the fibre had been disconnected at the ONT by a third-party engineer during other works. Reconnected the SC APC connector, service restored, no parts."
+        },
+        {
+          "id": "flt-1036",
+          "wer": 0.032,
+          "expected": "Job 1036, high attenuation traced to two dirty connectors, one at the ODF and one at the ONT. Cleaned both SC/APC connectors, power improved from -28 to -21 dBm, no replacements.",
+          "got": "Job 10:36. High attenuation traced to two dirty connectors, one at the ODF and one at the ONT. Cleaned both SC/APC connectors. Power improved from -28 dBm to -21 dBm. No replacements."
+        },
+        {
+          "id": "flt-1037",
+          "wer": 0.0,
+          "expected": "Fault 1037, ONT showing dying gasp then no power. Replaced both the ONT, SKU ONT-5678, and its PSU, SKU PSU-12V-2A, as the PSU had spiked and damaged the unit. Service back.",
+          "got": "Fault 1037. ONT showing dying gasp, then no power. Replaced both the ONT SKU ONT-5678 and its PSU SKU PSU-12V-2A. As the PSU had spiked and damaged the unit, service back."
+        },
+        {
+          "id": "flt-1038",
+          "wer": 0.107,
+          "expected": "Ticket 1038, reported as slow speeds but actually intermittent total drops. Root cause was a failing drop cable with a hairline crack. Replaced drop cable, SKU DROP-G657A2, stable.",
+          "got": "Ticket ten thirty eight, reported as slow speeds but actually intermittent total drops. Root cause was a failing drop cable with a hairline crack. Replaced drop cable SKU DROP-G657A2. Stable."
+        },
+        {
+          "id": "flt-1039",
+          "wer": 0.125,
+          "expected": "Fault 1039, ONT online but no upstream, OMCI kept resetting. Traced to a duplicate ONT ID clashing with another unit on the PON. Reassigned a unique ID, provisioning held and traffic flowed.",
+          "got": "fault one thousand thirty nine, ONT online but no upstream, OMCI kept resetting, traced to a duplicate ONT ID clashing with another unit on the PON, reassigned a unique ID, provisioning held and traffic flowed"
+        },
+        {
+          "id": "flt-1040",
+          "wer": 0.0,
+          "expected": "Job 1040, booked as a hardware fault on the OLT, but investigation showed a software bug in the line card firmware causing spurious alarms. Applied vendor patch, alarms cleared, no hardware replaced.",
+          "got": "Job 1040, booked as a hardware fault on the OLT, but investigation showed a software bug in the line card firmware causing spurious alarms. Applied vendor patch; alarms cleared, no hardware replaced."
+        },
+        {
+          "id": "flt-1001",
+          "wer": 0.065,
+          "expected": "Fault 1001, customer had no service. The ONT was showing a red LOS light. Swapped the ONT for a new one, SKU ONT-5678, and service came back. Old unit was faulty.",
+          "got": "Fault 101. Customer had no service. The ONT was showing red LOS light. Swapped the ONT for a new one, SKU ONT-5678, and service came back. Old unit was faulty."
+        },
+        {
+          "id": "flt-1002",
+          "wer": 0.12,
+          "expected": "Ticket 1002, XGS-PON OLT port was down. Checked the SFP+ on the line card and it was dead. Replaced SFP, SKU SFP-P-10G, port came up.",
+          "got": "Ticket 1002, excess PON/OLT port was down. Checked the SFP+ on line card and it was dead. Replaced SFP SKU SFP-P-10G, port came up."
+        },
+        {
+          "id": "flt-1003",
+          "wer": 0.0,
+          "expected": "Job 1003, customer reported slow speeds but line tested fine. Optical power was good at -18 dBm. No fault found, likely WiFi issue on customer side.",
+          "got": "Job 1003. Customer reported slow speeds, but line tested fine. Optical power was good at -18 dBm. No fault found; likely Wi-Fi issue on customer side."
+        },
+        {
+          "id": "flt-1004",
+          "wer": 0.033,
+          "expected": "Fault 1004, there was a fibre break in the feeder between cabinet 12 and the splitter. Spliced the fibre and reused existing pigtail, SKU PIG-SC-APC. Service restored to 40 homes.",
+          "got": "Fault 14. There was a fibre break in the feeder between Cabinet 12 and the splitter. Spliced the fibre and reused existing pigtail SKU: Pig-SC-APC. Service restored to 40 homes."
+        },
+        {
+          "id": "flt-1005",
+          "wer": 0.043,
+          "expected": "Ticket 1005, ONT kept dropping every few minutes. Turned out to be a firmware mismatch. Upgraded ONT firmware to version 3.2, stable since.",
+          "got": "Ticket 105 ONT kept dropping every few minutes, turned out to be a firmware mismatch, upgraded ONT firmware to version 3.2, stable since"
+        },
+        {
+          "id": "flt-1006",
+          "wer": 0.111,
+          "expected": "Fault 1006, high attenuation on the drop. Measured -29 dBm at the ONT. Found a dirty connector, cleaned SC/APC connector and re-seated. Power back to -22 dBm.",
+          "got": "Fault 1006: High attenuation on the drop, measured -29 dBm at the ONT. Found a dirty connector, cleaned SC APC connector and reseated. Power back to -22."
+        },
+        {
+          "id": "flt-1007",
+          "wer": 0.045,
+          "expected": "Job 1007, wrong VLAN was provisioned on the ONT so customer got no internet. Corrected the VLAN config to 500, service working.",
+          "got": "Job 107: Wrong VLAN was provisioned on the ONT, so customer got no internet. Corrected the VLAN config to 500; service working."
+        },
+        {
+          "id": "flt-1008",
+          "wer": 0.143,
+          "expected": "Fault 1008, the 1:32 splitter in the street cabinet was cracked with water ingress. Replaced splitter, SKU SPL-1-32, restored 20 subscribers.",
+          "got": "Fault 1008: The 1-to-32 splitter in the street cabinet was cracked due to water ingress. Replaced splitter SKU SPL-132. Restored 20 subscribers."
+        },
+        {
+          "id": "flt-1009",
+          "wer": 0.0,
+          "expected": "Ticket 1009, power outage at the exchange took the OLT offline. UPS failed to hold. Replaced UPS battery, SKU BAT-48V, OLT back online.",
+          "got": "Ticket 1009 power outage at the exchange took the OLT offline. UPS failed to hold. Replaced UPS battery SKU BAT-48V. OLT back online."
+        },
+        {
+          "id": "flt-1010",
+          "wer": 0.091,
+          "expected": "Fault 1010, customer complained of no service but appointment was a no-access. Could not get into the property, rebooked, no work done.",
+          "got": "Fault 1010 customer complained of no service but appointment was a no access, could not get into the property, rebooked, no work done"
+        },
+        {
+          "id": "flt-1011",
+          "wer": 0.0,
+          "expected": "Job 1011, uplink card in the OLT chassis was faulting with CRC errors. Swapped the line card, SKU LC-XGS-16, errors cleared.",
+          "got": "Job 1011, uplink card in the OLT chassis was faulting with CRC errors, swapped the line card SKU LC-XGS-16, errors cleared."
+        },
+        {
+          "id": "flt-1012",
+          "wer": 0.0,
+          "expected": "Fault 1012, intermittent drops traced to a bent fibre in the customer riser. Replaced the drop cable, SKU DROP-G657A2, and refitted, stable.",
+          "got": "Fault 1012 intermittent drops traced to a bent fibre in the customer riser, replaced the drop cable SKU DROP-G657A2 and refitted, stable."
+        },
+        {
+          "id": "flt-1013",
+          "wer": 0.0,
+          "expected": "Ticket 1013, ONU would not register on the PON, OMCI not coming up. Found duplicate serial in the OLT, removed stale entry and re-provisioned, registered OK.",
+          "got": "Ticket 1013 ONU would not register on the PON, OMCI not coming up, found duplicate serial in the OLT, removed stale entry and re-provisioned, registered OK"
+        },
+        {
+          "id": "flt-1014",
+          "wer": 0.095,
+          "expected": "Fault 1014, whole street off. Digger cut the main feeder duct. Emergency splice done on 288-fibre cable, used closure SKU CLO-288.",
+          "got": "Fault 1014, whole street off, digger cut the main feeder duct, emergency splice done on 288 fibre cable, used closure SKU CLO-288."
+        },
+        {
+          "id": "flt-1015",
+          "wer": 0.043,
+          "expected": "Job 1015, customer says intermittent but everything green and stable for two hours of monitoring. Advised monitor further, no fault at this time.",
+          "got": "Job 10:15. Customer says intermittent, but everything is green and stable for two hours of monitoring. Advised monitor further; no fault at this time."
+        },
+        {
+          "id": "flt-1016",
+          "wer": 0.0,
+          "expected": "Fault 1016, ONT power supply dead, no lights at all. Swapped the PSU, SKU PSU-12V-2A, and ONT booted, service fine.",
+          "got": "Fault 1016, ONT power supply dead, no lights at all. Swapped the PSU SKU PSU-12V-2A and ONT booted, service fine."
+        }
+      ]
+    },
+    "json": {
+      "quality": {
+        "parse_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "field_accuracy": 0.802,
+        "per_field": {
+          "fault_reference": 1.0,
+          "reported_issue_summary": 0.626,
+          "rc_hl_category": 0.925,
+          "rc_ll_category": 0.775,
+          "rc_fault_story_verbose": 0.703,
+          "reported_issue_correct_flag": 0.9,
+          "valid_issue_flag": 0.925,
+          "faulty_components": 0.455,
+          "used_components": 0.904
+        }
+      },
+      "perf": {
+        "concurrency": 3,
+        "num_tasks": 40,
+        "wall_time_s": 615.55,
+        "mean_latency_s": 44.969,
+        "p50_latency_s": 47.723,
+        "p95_latency_s": 51.236,
+        "throughput_per_s": 0.065,
+        "num_errors": 0
+      },
+      "num_errors": 0,
+      "first_error": null,
+      "per_sample": [
+        {
+          "id": "flt-1017",
+          "field_accuracy": 0.72,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.625,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8571428571428571,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 0.0
+          },
+          "expected_ref": "1017",
+          "got_ref": "1017",
+          "expected_faulty": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "Power Supply",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "power supply",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "PSU Failure",
+          "got_ll": "PSU Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1018",
+          "field_accuracy": 0.922,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.85,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1018",
+          "got_ref": "1018",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Network",
+          "got_hl": "Network",
+          "expected_ll": "No Fault Found",
+          "got_ll": "No Fault Found",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1019",
+          "field_accuracy": 0.806,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.9583333333333334,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 0.5
+          },
+          "expected_ref": "1019",
+          "got_ref": "1019",
+          "expected_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "Patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "Patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "patch lead",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "SFP Fault",
+          "got_ll": "Cable Damage",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1020",
+          "field_accuracy": 0.807,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7647058823529411,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1020",
+          "got_ref": "1020",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Software",
+          "got_hl": "Software",
+          "expected_ll": "Firmware Mismatch",
+          "got_ll": "Firmware Mismatch",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1021",
+          "field_accuracy": 0.956,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.9047619047619048,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1021",
+          "got_ref": "1021",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "Power Trip",
+          "got_ll": "Power Trip",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1022",
+          "field_accuracy": 0.889,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.875,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.42857142857142855,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1022",
+          "got_ref": "1022",
+          "expected_faulty": [
+            {
+              "item": "Line card",
+              "sku": "LC-XGS-16"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "line card",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "Line Card Fault",
+          "got_ll": "Line Card Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1023",
+          "field_accuracy": 0.677,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 0.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.7222222222222222,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1023",
+          "got_ref": "1023",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [
+            {
+              "item": "Patch cord",
+              "sku": "PC-SC-APC-1M"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "patch",
+              "sku": "PC-SC-APC-1M"
+            }
+          ],
+          "expected_hl": "Configuration",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Provisioning Error",
+          "got_ll": "Disconnected Fibre",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1024",
+          "field_accuracy": 0.903,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.75,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1024",
+          "got_ref": "1024",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "No Access",
+          "got_ll": "No Access",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1025",
+          "field_accuracy": 0.838,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7391304347826086,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1025",
+          "got_ref": "1025",
+          "expected_faulty": [
+            {
+              "item": "Fibre closure",
+              "sku": "CLO-48"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "splice",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Fibre closure",
+              "sku": "CLO-48"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "closure",
+              "sku": "CLO-48"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Fibre Break",
+          "got_ll": "Fibre Break",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1026",
+          "field_accuracy": 0.765,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8888888888888888,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 1.0,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1026",
+          "got_ref": "1026",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "Service Profile",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Configuration",
+          "got_hl": "Configuration",
+          "expected_ll": "Config Error",
+          "got_ll": "Provisioning Error",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1027",
+          "field_accuracy": 0.775,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.45454545454545453,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8181818181818182,
+            "reported_issue_correct_flag": 0.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1027",
+          "got_ref": "1027",
+          "expected_faulty": [
+            {
+              "item": "Splitter",
+              "sku": "SPL-1-32"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "aged splitter",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Optical Budget",
+          "got_ll": "Optical Budget",
+          "expected_correct_flag": false,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1028",
+          "field_accuracy": 0.936,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8571428571428571,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5625,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1028",
+          "got_ref": "1028",
+          "expected_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "SFP Fault",
+          "got_ll": "SFP Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1029",
+          "field_accuracy": 0.694,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8421052631578947,
+            "reported_issue_correct_flag": 0.0,
+            "valid_issue_flag": 0.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1029",
+          "got_ref": "1029",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Network",
+          "got_hl": "Network",
+          "expected_ll": "No Fault Found",
+          "got_ll": "No Fault Found",
+          "expected_correct_flag": false,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1030",
+          "field_accuracy": 0.725,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7777777777777778,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.6153846153846154,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.4666666666666667,
+            "used_components": 0.6666666666666666
+          },
+          "expected_ref": "1030",
+          "got_ref": "1030",
+          "expected_faulty": [
+            {
+              "item": "288-fibre feeder cable",
+              "sku": "CLO-288"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "feeder duct",
+              "sku": ""
+            },
+            {
+              "item": "288-fibre cable",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Fibre closure",
+              "sku": "CLO-288"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "closure",
+              "sku": "CLO-288"
+            },
+            {
+              "item": "spare fibre",
+              "sku": ""
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Cable Damage",
+          "got_ll": "Fibre Break",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1031",
+          "field_accuracy": 0.677,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7142857142857143,
+            "reported_issue_correct_flag": 0.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1031",
+          "got_ref": "1031",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "power socket",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "Mains Fault",
+          "got_ll": "Mains Fault",
+          "expected_correct_flag": false,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1032",
+          "field_accuracy": 0.693,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.42857142857142855,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.8125,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1032",
+          "got_ref": "1032",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Configuration",
+          "got_hl": "Configuration",
+          "expected_ll": "Config Error",
+          "got_ll": "Provisioning Error",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1033",
+          "field_accuracy": 0.76,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5714285714285714,
+            "rc_hl_category": 0.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5714285714285714,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1033",
+          "got_ref": "1033",
+          "expected_faulty": [
+            {
+              "item": "1:16 splitter",
+              "sku": "SPL-1-16"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "1:16 splitter",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "1:16 splitter",
+              "sku": "SPL-1-16"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "splitter",
+              "sku": "SPL-1-16"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Hardware",
+          "expected_ll": "Splitter Fault",
+          "got_ll": "Splitter Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1034",
+          "field_accuracy": 0.865,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5555555555555556,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5333333333333333,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1034",
+          "got_ref": "1034",
+          "expected_faulty": [
+            {
+              "item": "Fan tray",
+              "sku": "FAN-OLT-X"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "fan tray",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Fan tray",
+              "sku": "FAN-OLT-X"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "fan tray",
+              "sku": "FAN-OLT-X"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "Cooling Fault",
+          "got_ll": "Cooling Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1035",
+          "field_accuracy": 0.83,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5714285714285714,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8947368421052632,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1035",
+          "got_ref": "1035",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "SC/APC connector",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Disconnected Fibre",
+          "got_ll": "Disconnected Fibre",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1036",
+          "field_accuracy": 0.824,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5555555555555556,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8571428571428571,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1036",
+          "got_ref": "1036",
+          "expected_faulty": [
+            {
+              "item": "SC/APC connector",
+              "sku": "CON-SC-APC"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "dirty connector",
+              "sku": ""
+            },
+            {
+              "item": "dirty connector",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Optical Budget",
+          "got_ll": "Optical Budget",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1037",
+          "field_accuracy": 0.751,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 0.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.6470588235294118,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.6666666666666666,
+            "used_components": 1.0
+          },
+          "expected_ref": "1037",
+          "got_ref": "1037",
+          "expected_faulty": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            },
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            },
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            },
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Hardware",
+          "expected_ll": "PSU Failure",
+          "got_ll": "PSU Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1038",
+          "field_accuracy": 0.761,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.6,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.55,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1038",
+          "got_ref": "1038",
+          "expected_faulty": [
+            {
+              "item": "Drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "drop cable",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Fibre Break",
+          "got_ll": "Cable Damage",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1039",
+          "field_accuracy": 0.772,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 1.0,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.9473684210526315,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1039",
+          "got_ref": "1039",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Configuration",
+          "got_hl": "Configuration",
+          "expected_ll": "Provisioning Error",
+          "got_ll": "Config Error",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1040",
+          "field_accuracy": 0.743,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8888888888888888,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8,
+            "reported_issue_correct_flag": 0.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1040",
+          "got_ref": "1040",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "Line Card Firmware",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Software",
+          "got_hl": "Software",
+          "expected_ll": "Firmware Mismatch",
+          "got_ll": "Firmware Mismatch",
+          "expected_correct_flag": false,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1001",
+          "field_accuracy": 0.819,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.42857142857142855,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.47368421052631576,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.4666666666666667,
+            "used_components": 1.0
+          },
+          "expected_ref": "1001",
+          "got_ref": "1001",
+          "expected_faulty": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            },
+            {
+              "item": "Old ONT Unit",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "ONT",
+              "sku": "ONT-5678"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "ONT Failure",
+          "got_ll": "ONT Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1002",
+          "field_accuracy": 0.89,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5625,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1002",
+          "got_ref": "1002",
+          "expected_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "SFP",
+              "sku": "SFP-P-10G"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "SFP Fault",
+          "got_ll": "SFP Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1003",
+          "field_accuracy": 0.792,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.6842105263157895,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 0.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1003",
+          "got_ref": "1003",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Network",
+          "got_hl": "Network",
+          "expected_ll": "No Fault Found",
+          "got_ll": "No Fault Found",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1004",
+          "field_accuracy": 0.904,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7391304347826086,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1004",
+          "got_ref": "1004",
+          "expected_faulty": [
+            {
+              "item": "Feeder fibre",
+              "sku": "PIG-SC-APC"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "feeder fibre",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Pigtail",
+              "sku": "PIG-SC-APC"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "pigtail",
+              "sku": "PIG-SC-APC"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Fibre Break",
+          "got_ll": "Fibre Break",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1005",
+          "field_accuracy": 0.706,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 1.0,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.35294117647058826,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 0.0
+          },
+          "expected_ref": "1005",
+          "got_ref": "1005",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_hl": "Software",
+          "got_hl": "Software",
+          "expected_ll": "Firmware Mismatch",
+          "got_ll": "Firmware Mismatch",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1006",
+          "field_accuracy": 0.67,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.6521739130434783,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 0.0
+          },
+          "expected_ref": "1006",
+          "got_ref": "1006",
+          "expected_faulty": [
+            {
+              "item": "SC/APC connector",
+              "sku": "CON-SC-APC"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "dirty connector",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [
+            {
+              "item": "SC/APC connector",
+              "sku": ""
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Optical Budget",
+          "got_ll": "Optical Budget",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1007",
+          "field_accuracy": 0.703,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7142857142857143,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.6153846153846154,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1007",
+          "got_ref": "1007",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Configuration",
+          "got_hl": "Configuration",
+          "expected_ll": "Config Error",
+          "got_ll": "Provisioning Error",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1008",
+          "field_accuracy": 0.902,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7222222222222222,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1008",
+          "got_ref": "1008",
+          "expected_faulty": [
+            {
+              "item": "1:32 splitter",
+              "sku": "SPL-1-32"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "1:32 splitter",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "1:32 splitter",
+              "sku": "SPL-1-32"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "splitter",
+              "sku": "SPL-1-32"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Splitter Fault",
+          "got_ll": "Splitter Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1009",
+          "field_accuracy": 0.892,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.75,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5789473684210527,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1009",
+          "got_ref": "1009",
+          "expected_faulty": [
+            {
+              "item": "UPS battery",
+              "sku": "BAT-48V"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "UPS",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "UPS battery",
+              "sku": "BAT-48V"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "UPS Battery",
+              "sku": "BAT-48V"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "UPS Failure",
+          "got_ll": "UPS Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1010",
+          "field_accuracy": 0.881,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.42857142857142855,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1010",
+          "got_ref": "1010",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "No Access",
+          "got_ll": "No Access",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1011",
+          "field_accuracy": 0.865,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8571428571428571,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.9285714285714286,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1011",
+          "got_ref": "1011",
+          "expected_faulty": [
+            {
+              "item": "Line card",
+              "sku": "LC-XGS-16"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "uplink card",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Line card",
+              "sku": "LC-XGS-16"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "line card",
+              "sku": "LC-XGS-16"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "Line Card Fault",
+          "got_ll": "Line Card Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1012",
+          "field_accuracy": 0.84,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8571428571428571,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1012",
+          "got_ref": "1012",
+          "expected_faulty": [
+            {
+              "item": "Drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "bent fibre",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "drop cable",
+              "sku": "DROP-G657A2"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Fibre Bend",
+          "got_ll": "Fibre Bend",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1013",
+          "field_accuracy": 0.767,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.5263157894736842,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1013",
+          "got_ref": "1013",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONU",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Configuration",
+          "got_hl": "Configuration",
+          "expected_ll": "Provisioning Error",
+          "got_ll": "Provisioning Error",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1014",
+          "field_accuracy": 0.716,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.875,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.5714285714285714,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1014",
+          "got_ref": "1014",
+          "expected_faulty": [
+            {
+              "item": "288-fibre feeder cable",
+              "sku": "CLO-288"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "main feeder duct",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "Fibre closure",
+              "sku": "CLO-288"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "closure",
+              "sku": "CLO-288"
+            }
+          ],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Cable Damage",
+          "got_ll": "Fibre Break",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1015",
+          "field_accuracy": 0.804,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7894736842105263,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 0.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1015",
+          "got_ref": "1015",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Network",
+          "got_hl": "Network",
+          "expected_ll": "No Fault Found",
+          "got_ll": "No Fault Found",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1016",
+          "field_accuracy": 0.82,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7142857142857143,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.6666666666666666,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1016",
+          "got_ref": "1016",
+          "expected_faulty": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "ONT Power Supply",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "PSU Failure",
+          "got_ll": "PSU Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        }
+      ]
+    },
+    "hardware": {
+      "duration_s": 1286.7,
+      "cpu_percent_mean": 42.0,
+      "cpu_percent_peak": 63.6,
+      "system_ram_used_peak_mb": 25679.8,
+      "process_rss_peak_mb": 34.9,
+      "tracked_rss_peak_mb": {
+        "ollama": 162.6
+      },
+      "num_cpus": 20,
+      "total_ram_mb": 33434.9,
+      "num_samples": 4787
+    }
+  }
+]

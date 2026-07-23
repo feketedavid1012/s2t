@@ -4,6 +4,15 @@ Correction task:  compare produced corrected text to the expected corrected text
                   (word error rate, reusing the benchmark metrics).
 JSON task:        parse rate, schema-valid rate, and field-level accuracy against
                   the expected structured report.
+
+Scoring notes:
+- Components are matched on the *item name* first, with the SKU as partial credit.
+  Matching on SKU alone punished models that correctly declined to invent a part
+  number that never appeared in the source text.
+- fault_reference is compared on digits only, so "1001", "Fault 1001" and
+  "FLT-1001" all count as correct.
+- Verbose free-text fields are scored by content-word recall against the expected
+  text, not merely by being non-empty.
 """
 from __future__ import annotations
 
@@ -12,6 +21,23 @@ import re
 from dataclasses import dataclass, field
 
 from . import schema
+
+# Fields where we expect prose, scored by content overlap rather than exact match.
+VERBOSE_FIELDS = ("reported_issue_summary", "rc_fault_story_verbose")
+# Fields compared exactly (after normalization).
+EXACT_FIELDS = ("rc_hl_category", "rc_ll_category")
+
+_STOPWORDS = {
+    "a", "an", "the", "was", "were", "is", "are", "be", "been", "being", "and",
+    "or", "but", "of", "to", "in", "on", "at", "for", "with", "by", "from",
+    "as", "that", "this", "it", "its", "had", "has", "have", "no", "not",
+    "after", "before", "which", "into", "out", "up", "down", "then", "so",
+}
+
+# Weighting for component scoring: item name carries most of the credit,
+# the SKU adds the rest. Tune here if your priorities differ.
+ITEM_WEIGHT = 0.7
+SKU_WEIGHT = 0.3
 
 
 def extract_json(text: str):
@@ -42,20 +68,79 @@ def _norm(s) -> str:
     return re.sub(r"[^\w]", "", str(s)).lower()
 
 
+def _tokens(s) -> set[str]:
+    return {t for t in re.split(r"[^\w]+", str(s).lower()) if t}
+
+
+def _content_tokens(s) -> set[str]:
+    return {t for t in _tokens(s) if t not in _STOPWORDS and len(t) > 1}
+
+
+def _digits(s) -> str:
+    """Digits only, so 'FLT-1001' / 'Fault 1001' / '1001' all compare equal."""
+    return re.sub(r"\D", "", str(s))
+
+
+def _items_equivalent(a, b) -> bool:
+    """True if two component item names refer to the same thing.
+
+    Uses token subset / overlap so 'ONT' matches 'ONT device' and 'splitter'
+    matches '1:32 splitter'.
+    """
+    ta, tb = _tokens(a), _tokens(b)
+    if not ta or not tb:
+        return False
+    if ta <= tb or tb <= ta:
+        return True
+    return len(ta & tb) / len(ta | tb) >= 0.5
+
+
+def _pair_score(exp_c: dict, got_c: dict) -> float:
+    """Credit for one matched component: item name plus optional SKU bonus."""
+    score = ITEM_WEIGHT
+    exp_sku, got_sku = _norm(exp_c.get("sku", "")), _norm(got_c.get("sku", ""))
+    if exp_sku and exp_sku == got_sku:
+        score += SKU_WEIGHT
+    elif not exp_sku and not got_sku:
+        # Neither side claims a SKU - full credit, no fabrication expected.
+        score += SKU_WEIGHT
+    return score
+
+
 def _components_match(expected: list, got: list) -> float:
-    """Set-overlap (F1-ish) on normalized SKUs of a component list."""
-    exp = {_norm(c.get("sku", "")) for c in expected if isinstance(c, dict)}
-    gotset = {_norm(c.get("sku", "")) for c in got if isinstance(c, dict)}
-    exp.discard("")
-    gotset.discard("")
-    if not exp and not gotset:
-        return 1.0
-    if not exp or not gotset:
+    """F1 over component lists, matched by item name with SKU as partial credit."""
+    exp = [c for c in (expected or []) if isinstance(c, dict)]
+    got_l = [c for c in (got or []) if isinstance(c, dict)]
+    if not exp and not got_l:
+        return 1.0  # correctly reported no components
+    if not exp or not got_l:
         return 0.0
-    tp = len(exp & gotset)
-    prec = tp / len(gotset)
+
+    matched: set[int] = set()
+    tp = 0.0
+    for e in exp:
+        for i, g in enumerate(got_l):
+            if i in matched:
+                continue
+            if _items_equivalent(e.get("item"), g.get("item")):
+                tp += _pair_score(e, g)
+                matched.add(i)
+                break
+
+    prec = tp / len(got_l)
     rec = tp / len(exp)
     return 0.0 if (prec + rec) == 0 else 2 * prec * rec / (prec + rec)
+
+
+def _verbose_score(expected: str, got: str) -> float:
+    """Content-word recall of the expected text within the produced text."""
+    exp_t = _content_tokens(expected)
+    got_t = _content_tokens(got)
+    if not exp_t:
+        return 1.0 if not got_t else 0.0
+    if not got_t:
+        return 0.0
+    return len(exp_t & got_t) / len(exp_t)
 
 
 def score_json(expected: dict, got) -> dict:
@@ -63,18 +148,23 @@ def score_json(expected: dict, got) -> dict:
     parsed_ok = got is not None
     valid = schema.is_valid(got) if parsed_ok else False
     fields: dict[str, float] = {}
+
     if parsed_ok and isinstance(got, dict):
         for f in schema.STRING_FIELDS:
-            # substring/exact on normalized text is too strict for verbose fields;
-            # score exact for short categorical fields, presence for verbose ones.
-            if f in ("rc_hl_category", "rc_ll_category", "fault_reference"):
+            if f == "fault_reference":
+                e, g = _digits(expected.get(f)), _digits(got.get(f))
+                fields[f] = 1.0 if e and e == g else 0.0
+            elif f in EXACT_FIELDS:
                 fields[f] = 1.0 if _norm(got.get(f)) == _norm(expected.get(f)) else 0.0
-            else:
-                fields[f] = 1.0 if str(got.get(f, "")).strip() else 0.0
+            else:  # verbose prose
+                fields[f] = _verbose_score(expected.get(f, ""), got.get(f, ""))
+
         for f in schema.BOOL_FIELDS:
             fields[f] = 1.0 if got.get(f) == expected.get(f) else 0.0
+
         for f in schema.COMPONENT_LIST_FIELDS:
             fields[f] = _components_match(expected.get(f, []), got.get(f, []))
+
     field_mean = sum(fields.values()) / len(fields) if fields else 0.0
     return {
         "parsed": parsed_ok,

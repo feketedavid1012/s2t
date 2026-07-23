@@ -28,6 +28,14 @@ ALL_FIELDS = STRING_FIELDS + BOOL_FIELDS + COMPONENT_LIST_FIELDS
 # High-level root-cause categories used in scoring / prompting.
 RC_HL_CATEGORIES = ["Hardware", "Software", "Network", "Physical Plant", "Configuration", "Power"]
 
+RC_LL_CATEGORIES = [
+    "ONT Failure", "SFP Fault", "Line Card Fault", "PSU Failure", "UPS Failure",
+    "Power Trip", "Mains Fault", "Cooling Fault", "Firmware Mismatch",
+    "Config Error", "Provisioning Error", "Fibre Break", "Fibre Bend",
+    "Cable Damage", "Splitter Fault", "Optical Budget", "Disconnected Fibre",
+    "No Access", "No Fault Found",
+]
+
 
 def json_schema() -> dict:
     """JSON-schema dict to hand to the model (Ollama `format`)."""
@@ -39,6 +47,8 @@ def json_schema() -> dict:
     props = {f: {"type": "string"} for f in STRING_FIELDS}
     props.update({f: {"type": "boolean"} for f in BOOL_FIELDS})
     props.update({f: {"type": "array", "items": component} for f in COMPONENT_LIST_FIELDS})
+    props["rc_hl_category"] = {"type": "string", "enum": RC_HL_CATEGORIES}
+    props["rc_ll_category"] = {"type": "string", "enum": RC_LL_CATEGORIES}
     return {"type": "object", "properties": props, "required": ALL_FIELDS}
 
 

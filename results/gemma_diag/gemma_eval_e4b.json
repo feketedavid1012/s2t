@@ -1,0 +1,349 @@
+[
+  {
+    "model": "gemma4:e4b",
+    "concurrency": 1,
+    "num_samples": 8,
+    "json": {
+      "quality": {
+        "parse_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "field_accuracy": 0.836,
+        "per_field": {
+          "fault_reference": 1.0,
+          "reported_issue_summary": 0.634,
+          "rc_hl_category": 0.875,
+          "rc_ll_category": 0.75,
+          "rc_fault_story_verbose": 0.745,
+          "reported_issue_correct_flag": 1.0,
+          "valid_issue_flag": 1.0,
+          "faulty_components": 0.713,
+          "used_components": 0.812
+        }
+      },
+      "perf": {
+        "concurrency": 1,
+        "num_tasks": 8,
+        "wall_time_s": 114.11,
+        "mean_latency_s": 14.263,
+        "p50_latency_s": 14.385,
+        "p95_latency_s": 18.422,
+        "throughput_per_s": 0.07,
+        "num_errors": 0
+      },
+      "num_errors": 0,
+      "first_error": null,
+      "per_sample": [
+        {
+          "id": "flt-1017",
+          "field_accuracy": 0.72,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.625,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.8571428571428571,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 0.0
+          },
+          "expected_ref": "1017",
+          "got_ref": "1017",
+          "expected_faulty": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "Power Supply",
+              "sku": ""
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "PSU",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "power supply",
+              "sku": "PSU-12V-2A"
+            }
+          ],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "PSU Failure",
+          "got_ll": "PSU Failure",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1018",
+          "field_accuracy": 0.922,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.4444444444444444,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.85,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1018",
+          "got_ref": "1018",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Network",
+          "got_hl": "Network",
+          "expected_ll": "No Fault Found",
+          "got_ll": "No Fault Found",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1019",
+          "field_accuracy": 0.806,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.8,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.9583333333333334,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 0.5
+          },
+          "expected_ref": "1019",
+          "got_ref": "1019",
+          "expected_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "Patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "expected_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "Patch cord",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "SFP+",
+              "sku": "SFP-P-10G"
+            },
+            {
+              "item": "patch lead",
+              "sku": "PC-LC-APC-2M"
+            }
+          ],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "SFP Fault",
+          "got_ll": "Cable Damage",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1020",
+          "field_accuracy": 0.807,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.5,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.7647058823529411,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1020",
+          "got_ref": "1020",
+          "expected_faulty": [],
+          "got_faulty": [
+            {
+              "item": "ONT",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Software",
+          "got_hl": "Software",
+          "expected_ll": "Firmware Mismatch",
+          "got_ll": "Firmware Mismatch",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1021",
+          "field_accuracy": 0.956,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.7,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.9047619047619048,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1021",
+          "got_ref": "1021",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Power",
+          "got_hl": "Power",
+          "expected_ll": "Power Trip",
+          "got_ll": "Power Trip",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        },
+        {
+          "id": "flt-1022",
+          "field_accuracy": 0.889,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.875,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.42857142857142855,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 0.7,
+            "used_components": 1.0
+          },
+          "expected_ref": "1022",
+          "got_ref": "1022",
+          "expected_faulty": [
+            {
+              "item": "Line card",
+              "sku": "LC-XGS-16"
+            }
+          ],
+          "got_faulty": [
+            {
+              "item": "line card",
+              "sku": ""
+            }
+          ],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Hardware",
+          "got_hl": "Hardware",
+          "expected_ll": "Line Card Fault",
+          "got_ll": "Line Card Fault",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1023",
+          "field_accuracy": 0.688,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.75,
+            "rc_hl_category": 0.0,
+            "rc_ll_category": 0.0,
+            "rc_fault_story_verbose": 0.4444444444444444,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1023",
+          "got_ref": "1023",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [
+            {
+              "item": "Patch cord",
+              "sku": "PC-SC-APC-1M"
+            }
+          ],
+          "got_used": [
+            {
+              "item": "patch",
+              "sku": "PC-SC-APC-1M"
+            }
+          ],
+          "expected_hl": "Configuration",
+          "got_hl": "Physical Plant",
+          "expected_ll": "Provisioning Error",
+          "got_ll": "Disconnected Fibre",
+          "expected_correct_flag": true,
+          "got_correct_flag": true
+        },
+        {
+          "id": "flt-1024",
+          "field_accuracy": 0.903,
+          "fields": {
+            "fault_reference": 1.0,
+            "reported_issue_summary": 0.375,
+            "rc_hl_category": 1.0,
+            "rc_ll_category": 1.0,
+            "rc_fault_story_verbose": 0.75,
+            "reported_issue_correct_flag": 1.0,
+            "valid_issue_flag": 1.0,
+            "faulty_components": 1.0,
+            "used_components": 1.0
+          },
+          "expected_ref": "1024",
+          "got_ref": "1024",
+          "expected_faulty": [],
+          "got_faulty": [],
+          "expected_used": [],
+          "got_used": [],
+          "expected_hl": "Physical Plant",
+          "got_hl": "Physical Plant",
+          "expected_ll": "No Access",
+          "got_ll": "No Access",
+          "expected_correct_flag": false,
+          "got_correct_flag": false
+        }
+      ]
+    },
+    "hardware": {
+      "duration_s": 136.41,
+      "cpu_percent_mean": 42.7,
+      "cpu_percent_peak": 72.3,
+      "system_ram_used_peak_mb": 24674.0,
+      "process_rss_peak_mb": 28.9,
+      "tracked_rss_peak_mb": {
+        "ollama": 85.4
+      },
+      "num_cpus": 20,
+      "total_ram_mb": 33434.9,
+      "num_samples": 511
+    }
+  }
+]
